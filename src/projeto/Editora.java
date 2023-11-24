@@ -1,19 +1,28 @@
 package projeto;
 
 import java.util.ArrayList;
-import java.util.Calendar; 
 
 public class Editora {
     // Atributos
     private String nome;
     private String paisOrigem;
-    private Calendar anoFundacao;
+    private String anoFundacao;
     private ArrayList<Obra> obras = new ArrayList();
+    
+    private ArrayList<Editora> editoras;
+    
+    public ArrayList<Editora> getEditoras() {
+        return editoras;
+    }
+
+    public void setEditoras(ArrayList<Editora> editoras) {
+        this.editoras  = editoras;
+    }
     
     // Construtores
     public Editora() {
     }
-    public Editora(String nome, String paisOrigem, Calendar anoFundacao) {
+    public Editora(String nome, String paisOrigem, String anoFundacao) {
         this.nome = nome;
         this.paisOrigem = paisOrigem;
         this.anoFundacao = anoFundacao;
@@ -32,10 +41,10 @@ public class Editora {
     public void setPaisOrigem(String paisOrigem) {
         this.paisOrigem = paisOrigem;
     }
-    public Calendar getAnoFundacao() {
+    public String getAnoFundacao() {
         return anoFundacao;
     }
-    public void setAnoFundacao(Calendar anoFundacao) {
+    public void setAnoFundacao(String anoFundacao) {
         this.anoFundacao = anoFundacao;
     }
     public ArrayList<Obra> getObras() {

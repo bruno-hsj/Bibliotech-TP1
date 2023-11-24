@@ -44,7 +44,7 @@ public class MainMenu extends javax.swing.JFrame {
         labelLogin.setForeground(new java.awt.Color(255, 255, 255));
         labelLogin.setText("Login");
 
-        txtLogin.setToolTipText("Forneça seu usuário");
+        txtLogin.setToolTipText("Forneca seu nome de usuario");
         txtLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtLoginActionPerformed(evt);
@@ -54,7 +54,7 @@ public class MainMenu extends javax.swing.JFrame {
         labelSenha.setForeground(new java.awt.Color(255, 255, 255));
         labelSenha.setText("Senha");
 
-        txtSenha.setToolTipText("Forneça sua senha");
+        txtSenha.setToolTipText("Forneca sua senha");
 
         btnEntrar.setBackground(new java.awt.Color(51, 164, 40));
         btnEntrar.setForeground(new java.awt.Color(0, 0, 0));
@@ -77,7 +77,12 @@ public class MainMenu extends javax.swing.JFrame {
         });
 
         cbCheckAdm.setForeground(new java.awt.Color(255, 255, 255));
-        cbCheckAdm.setText("Sou bibliotecário");
+        cbCheckAdm.setText("Sou bibliotecario");
+        cbCheckAdm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbCheckAdmActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -150,12 +155,18 @@ public class MainMenu extends javax.swing.JFrame {
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
         if((txtLogin.getText().equals(admUserBruno) || txtLogin.getText().equals(admUserLayr) || txtLogin.getText().equals(admUserLucca)) && txtSenha.getText().equals(admPassword) && cbCheckAdm.isSelected()) {
             new AdmLogado().setVisible(true);
+        } else {
+            new UserLogado().setVisible(true);
         }
     }//GEN-LAST:event_btnEntrarActionPerformed
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
        new CadastroUser().setVisible(true);
     }//GEN-LAST:event_jLabel1MouseClicked
+
+    private void cbCheckAdmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbCheckAdmActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbCheckAdmActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

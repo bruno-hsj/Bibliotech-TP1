@@ -134,7 +134,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txtLogin">
           <Properties>
-            <Property name="toolTipText" type="java.lang.String" value="Forne&#xe7;a seu usu&#xe1;rio"/>
+            <Property name="toolTipText" type="java.lang.String" value="Forneca seu nome de usuario"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtLoginActionPerformed"/>
@@ -150,7 +150,7 @@
         </Component>
         <Component class="javax.swing.JPasswordField" name="txtSenha">
           <Properties>
-            <Property name="toolTipText" type="java.lang.String" value="Forne&#xe7;a sua senha"/>
+            <Property name="toolTipText" type="java.lang.String" value="Forneca sua senha"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="btnEntrar">
@@ -192,8 +192,11 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Sou bibliotec&#xe1;rio"/>
+            <Property name="text" type="java.lang.String" value="Sou bibliotecario"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cbCheckAdmActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

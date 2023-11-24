@@ -52,6 +52,9 @@ public class DetalhesContaUser extends javax.swing.JFrame {
         btnSair = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("BiblioTech | Detalhes da Conta");
+        setIconImage(new javax.swing.ImageIcon(getClass().getResource("/imgs/usuario-icon.png")).getImage()
+        );
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
 
@@ -241,6 +244,7 @@ public class DetalhesContaUser extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtEditaUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEditaUsuarioActionPerformed

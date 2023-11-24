@@ -40,7 +40,7 @@ public class CadastroUser extends javax.swing.JFrame {
         btnCadastrar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("BiblioTech | Sign Up");
+        setTitle("BiblioTech | Cadastro");
         setIconImage(new javax.swing.ImageIcon(getClass().getResource("/imgs/user-icon.png")).getImage()
         );
 

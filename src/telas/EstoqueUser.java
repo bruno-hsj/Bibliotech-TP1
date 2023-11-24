@@ -43,6 +43,9 @@ public class EstoqueUser extends javax.swing.JFrame {
         btnEmprestimo = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("BiblioTech | Pesquisa no Estoque");
+        setIconImage(new javax.swing.ImageIcon(getClass().getResource("/imgs/estoque-icon.png")).getImage()
+        );
 
         tblEstoque.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -52,7 +55,7 @@ public class EstoqueUser extends javax.swing.JFrame {
                 {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Titulo", "Gênero", "Idioma", "Páginas", "Idade", "Publicação", "Autor", "Editora", "Quantidade"
+                "Titulo", "Gênero", "Idioma", "Páginas", "Faixa Etária", "Publicação", "Autor", "Editora", "Quantidade"
             }
         ) {
             Class[] types = new Class [] {
