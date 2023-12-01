@@ -10,7 +10,6 @@ import java.util.stream.Collectors;
 /**
  * A classe BancoDeDados trata da manipulação de dados em arquivos .txt
  */
-
 public abstract class BancoDeDados {
     private static String caminho = System.getProperty("user.dir");
     private static String ultimoCaminho = caminho;
@@ -181,7 +180,7 @@ public abstract class BancoDeDados {
     
     
     
-    public static long index(String texto, String diretorio, String arquivo){
+    private static long index(String texto, String diretorio, String arquivo){
         Path caminhoArquivo = BancoDeDados.achaCaminho(diretorio, arquivo);
         if (caminhoArquivo != null){
             try {
@@ -197,8 +196,8 @@ public abstract class BancoDeDados {
     /**
      * Exclui uma linha do arquivo, se essa for igual ao texto passado como parâmetro.
      * @param texto A string que será deletada.
-     * @param diretorio O diretório onde está o arquivo.
-     * @param arquivo O arquivo onde está a string à ser excluída.
+     * @param diretorio O nome do diretório onde está o arquivo.
+     * @param arquivo O nome do arquivo onde está a string à ser excluída.
      * @return Retorna true se houver excluído a linha e false caso contrário.
      */
     public static boolean excluiLinha(String texto, String diretorio, String arquivo){
@@ -214,7 +213,14 @@ public abstract class BancoDeDados {
     }
 
 
-
+    /**
+     * Edita uma linha de um arquivo escolhido. O conteúdo da linha deve ser exatamente igual ao parâmetro texto.
+     * @param texto O antigo conteúdo da linha.
+     * @param novoTexto O novo conteúdo da linha.
+     * @param diretorio O nome do diretório onde está o arquivo.
+     * @param arquivo O nome do arquivo que será alterado.
+     * @return Retorna true caso a linha seja alterada com sucesso e false caso contrário.
+     */
     public static boolean editaLinha(String texto, String novoTexto, String diretorio, String arquivo){
         long idx = BancoDeDados.index(texto, diretorio, arquivo);
         int index = (int) idx; 

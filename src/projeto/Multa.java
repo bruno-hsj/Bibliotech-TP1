@@ -9,6 +9,10 @@ public class Multa {
     private double extra;
     
     // Construtores
+    
+    public Multa() {
+    }
+
     public Multa(Emprestimo emprestimo) {
         this.emprestimo = emprestimo;
         diasExcedidos = emprestimo.tempoRestante();         // diasExcedidos = dias restantes
