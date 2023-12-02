@@ -1,5 +1,7 @@
 package telas;
 
+import projeto.BancoDeDados;
+
 public class MainMenu extends javax.swing.JFrame {
 
     
@@ -7,7 +9,8 @@ public class MainMenu extends javax.swing.JFrame {
     private String admUserLayr = "layr";
     private String admUserLucca = "lucca";
     private String admPassword = "12345";
-    
+    public static String usuario;
+            
     public MainMenu() {
         initComponents();
     }
@@ -156,6 +159,7 @@ public class MainMenu extends javax.swing.JFrame {
         if((txtLogin.getText().equals(admUserBruno) || txtLogin.getText().equals(admUserLayr) || txtLogin.getText().equals(admUserLucca)) && txtSenha.getText().equals(admPassword) && cbCheckAdm.isSelected()) {
             new AdmLogado().setVisible(true);
         } else {
+            usuario = txtLogin.getText();
             new UserLogado().setVisible(true);
         }
     }//GEN-LAST:event_btnEntrarActionPerformed
@@ -194,6 +198,10 @@ public class MainMenu extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
+        BancoDeDados.criarDiretorio("Cliente");
+        BancoDeDados.criarArquivo("Login");
+        BancoDeDados.criarArquivo("Cadastro");
+        BancoDeDados.criarArquivo("User");
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new MainMenu().setVisible(true);

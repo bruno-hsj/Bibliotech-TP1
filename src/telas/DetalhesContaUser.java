@@ -40,7 +40,6 @@ public class DetalhesContaUser extends javax.swing.JFrame {
         labelUsuario = new javax.swing.JLabel();
         txtEditaUsuario = new javax.swing.JTextField();
         labelSenha = new javax.swing.JLabel();
-        txtEditaSenha = new javax.swing.JTextField();
         labelEditaTelefone = new javax.swing.JLabel();
         txtEditaTelefone = new javax.swing.JTextField();
         txtEditaEmail = new javax.swing.JTextField();
@@ -50,6 +49,7 @@ public class DetalhesContaUser extends javax.swing.JFrame {
         btnSalvarLivro = new javax.swing.JButton();
         btnPagarMulta1 = new javax.swing.JButton();
         btnSair = new javax.swing.JButton();
+        jPasswordField1 = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("BiblioTech | Detalhes da Conta");
@@ -82,12 +82,6 @@ public class DetalhesContaUser extends javax.swing.JFrame {
         });
 
         labelSenha.setText("Senha");
-
-        txtEditaSenha.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtEditaSenhaActionPerformed(evt);
-            }
-        });
 
         labelEditaTelefone.setText("Telefone");
 
@@ -159,11 +153,11 @@ public class DetalhesContaUser extends javax.swing.JFrame {
                                 .addComponent(btnCancelar)
                                 .addGap(27, 27, 27)
                                 .addComponent(btnEditarLivro))
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtEditaEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txtEditaUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txtEditaSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txtEditaTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(txtEditaEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 273, Short.MAX_VALUE)
+                                .addComponent(txtEditaUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 273, Short.MAX_VALUE)
+                                .addComponent(jPasswordField1)
+                                .addComponent(txtEditaTelefone, javax.swing.GroupLayout.Alignment.TRAILING)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 240, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -208,7 +202,7 @@ public class DetalhesContaUser extends javax.swing.JFrame {
                     .addComponent(LabelAtraso)
                     .addComponent(txtMostraAtraso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelSenha)
-                    .addComponent(txtEditaSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelSaldo)
@@ -250,10 +244,6 @@ public class DetalhesContaUser extends javax.swing.JFrame {
     private void txtEditaUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEditaUsuarioActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtEditaUsuarioActionPerformed
-
-    private void txtEditaSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEditaSenhaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtEditaSenhaActionPerformed
 
     private void txtEditaTelefoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEditaTelefoneActionPerformed
         // TODO add your handling code here:
@@ -319,6 +309,7 @@ public class DetalhesContaUser extends javax.swing.JFrame {
     private javax.swing.JButton btnSair;
     private javax.swing.JButton btnSalvarLivro;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JLabel labelDeposito;
     private javax.swing.JLabel labelEditaTelefone;
     private javax.swing.JLabel labelEmail;
@@ -328,7 +319,6 @@ public class DetalhesContaUser extends javax.swing.JFrame {
     private javax.swing.JLabel labelUsuario;
     private javax.swing.JLabel titulo;
     private javax.swing.JTextField txtEditaEmail;
-    private javax.swing.JTextField txtEditaSenha;
     private javax.swing.JTextField txtEditaTelefone;
     private javax.swing.JTextField txtEditaUsuario;
     private javax.swing.JTextField txtMostraAtraso;

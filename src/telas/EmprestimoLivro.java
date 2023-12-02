@@ -1,15 +1,28 @@
 package telas;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.time.temporal.ChronoUnit;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import projeto.BancoDeDados;
 
 
 public class EmprestimoLivro extends javax.swing.JFrame {
 
-
     public EmprestimoLivro() {
         initComponents();
+        nomeUserlbl.setText(MainMenu.usuario);
+        nomeSolicitantelbl.setText(MainMenu.usuario);
         jPanel2.setEnabled(false);
-
+        txtLogradouro.setEnabled(false);
+        txtComplemento.setEnabled(false);
+        txtNumero.setEnabled(false);
+        txtCEP.setEnabled(false);
+        txtCidade.setEnabled(false);
+        txtBairro.setEnabled(false);
+        cbxEstado.setEnabled(false);
     }
 
     @SuppressWarnings("unchecked")
@@ -20,14 +33,18 @@ public class EmprestimoLivro extends javax.swing.JFrame {
         titulo = new javax.swing.JLabel();
         solicitante = new javax.swing.JLabel();
         dataEmprestimo = new javax.swing.JLabel();
-        dataDevolucao = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         nomeSolicitante = new javax.swing.JLabel();
-        gerarDevolucao = new javax.swing.JLabel();
         btnGerarEmprestimo = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
-        btnEntrega = new javax.swing.JRadioButton();
+        rbtnEntrega = new javax.swing.JRadioButton();
         nomeLivro = new javax.swing.JLabel();
+        nomeUserlbl = new javax.swing.JLabel();
+        nomeSolicitantelbl = new javax.swing.JLabel();
+        nomeLivrolbl = new javax.swing.JLabel();
+        dataRetiradatxt = new javax.swing.JFormattedTextField();
+        gerarDatabtn = new javax.swing.JButton();
+        dataDevolucaolbl = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         lblLogradouro = new javax.swing.JLabel();
         txtLogradouro = new javax.swing.JTextField();
@@ -50,33 +67,22 @@ public class EmprestimoLivro extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Empréstimos"));
+        jPanel1.setForeground(new java.awt.Color(0, 255, 0));
 
         titulo.setFont(new java.awt.Font("Centaur", 1, 36)); // NOI18N
         titulo.setForeground(new java.awt.Color(255, 255, 255));
         titulo.setText("EMPRÉSTIMOS");
 
         solicitante.setBackground(new java.awt.Color(255, 255, 255));
-        solicitante.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         solicitante.setForeground(new java.awt.Color(255, 255, 255));
         solicitante.setText("Solicitante:");
 
         dataEmprestimo.setBackground(new java.awt.Color(255, 255, 255));
-        dataEmprestimo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         dataEmprestimo.setForeground(new java.awt.Color(255, 255, 255));
         dataEmprestimo.setText("Data de retirada do livro:");
 
-        dataDevolucao.setBackground(new java.awt.Color(255, 255, 255));
-        dataDevolucao.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        dataDevolucao.setForeground(new java.awt.Color(255, 255, 255));
-        dataDevolucao.setText("Data de devolução do livro:");
-
-        nomeSolicitante.setBackground(new java.awt.Color(255, 255, 255));
         nomeSolicitante.setForeground(new java.awt.Color(255, 255, 255));
-        nomeSolicitante.setText("Nome do Solicitante");
-
-        gerarDevolucao.setBackground(new java.awt.Color(255, 255, 255));
-        gerarDevolucao.setForeground(new java.awt.Color(255, 255, 255));
-        gerarDevolucao.setText("Gerar data de devolução");
+        nomeSolicitante.setText("Nome do Solicitante:");
 
         btnGerarEmprestimo.setText("Gerar Empréstimo");
         btnGerarEmprestimo.addActionListener(new java.awt.event.ActionListener() {
@@ -92,18 +98,41 @@ public class EmprestimoLivro extends javax.swing.JFrame {
             }
         });
 
-        btnEntrega.setBackground(new java.awt.Color(0, 0, 0));
-        btnEntrega.setForeground(new java.awt.Color(255, 255, 255));
-        btnEntrega.setText("Desejo receber o livro na minha casa.");
-        btnEntrega.addActionListener(new java.awt.event.ActionListener() {
+        rbtnEntrega.setBackground(new java.awt.Color(0, 0, 0));
+        rbtnEntrega.setForeground(new java.awt.Color(255, 255, 255));
+        rbtnEntrega.setText("Desejo receber o livro na minha casa.");
+        rbtnEntrega.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEntregaActionPerformed(evt);
+                rbtnEntregaActionPerformed(evt);
             }
         });
 
         nomeLivro.setBackground(new java.awt.Color(255, 255, 255));
         nomeLivro.setForeground(new java.awt.Color(255, 255, 255));
-        nomeLivro.setText("Inserir nome do Livro Solicitado");
+        nomeLivro.setText("Nome do Livro Solicitado:");
+
+        nomeUserlbl.setForeground(new java.awt.Color(255, 255, 255));
+
+        nomeSolicitantelbl.setForeground(new java.awt.Color(255, 255, 255));
+
+        dataRetiradatxt.setForeground(new java.awt.Color(0, 0, 0));
+        try {
+            dataRetiradatxt.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
+        gerarDatabtn.setBackground(new java.awt.Color(0, 0, 0));
+        gerarDatabtn.setForeground(new java.awt.Color(255, 255, 255));
+        gerarDatabtn.setText("Gerar data de devolução:");
+        gerarDatabtn.setBorder(null);
+        gerarDatabtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                gerarDatabtnActionPerformed(evt);
+            }
+        });
+
+        dataDevolucaolbl.setForeground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -115,19 +144,30 @@ public class EmprestimoLivro extends javax.swing.JFrame {
                     .addComponent(titulo, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jSeparator1)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(dataDevolucao)
-                            .addComponent(dataEmprestimo)
-                            .addComponent(solicitante, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(101, 101, 101))
-                    .addComponent(nomeSolicitante, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(nomeSolicitante)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(nomeSolicitantelbl, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(btnGerarEmprestimo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnCancelar))
-                    .addComponent(gerarDevolucao, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnEntrega)
-                    .addComponent(nomeLivro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(rbtnEntrega)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(solicitante)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(nomeUserlbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(nomeLivro)
+                        .addGap(18, 18, 18)
+                        .addComponent(nomeLivrolbl, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(dataEmprestimo)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(dataRetiradatxt, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(gerarDatabtn)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(dataDevolucaolbl, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(72, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -136,21 +176,29 @@ public class EmprestimoLivro extends javax.swing.JFrame {
                 .addGap(14, 14, 14)
                 .addComponent(titulo)
                 .addGap(41, 41, 41)
-                .addComponent(solicitante)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(solicitante)
+                    .addComponent(nomeUserlbl))
                 .addGap(39, 39, 39)
-                .addComponent(nomeSolicitante)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(nomeSolicitante)
+                    .addComponent(nomeSolicitantelbl, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(nomeLivro)
-                .addGap(26, 26, 26)
-                .addComponent(dataEmprestimo)
-                .addGap(64, 64, 64)
-                .addComponent(dataDevolucao)
-                .addGap(18, 18, 18)
-                .addComponent(gerarDevolucao)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
-                .addComponent(btnEntrega)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(nomeLivrolbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(nomeLivro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(44, 44, 44)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(dataEmprestimo)
+                    .addComponent(dataRetiradatxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(gerarDatabtn)
+                    .addComponent(dataDevolucaolbl, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(52, 52, 52)
+                .addComponent(rbtnEntrega)
                 .addGap(29, 29, 29)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnGerarEmprestimo)
@@ -163,7 +211,6 @@ public class EmprestimoLivro extends javax.swing.JFrame {
         jPanel2.setForeground(new java.awt.Color(255, 255, 255));
 
         lblLogradouro.setBackground(new java.awt.Color(255, 255, 255));
-        lblLogradouro.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblLogradouro.setForeground(new java.awt.Color(255, 255, 255));
         lblLogradouro.setText("Logradouro:");
 
@@ -176,32 +223,26 @@ public class EmprestimoLivro extends javax.swing.JFrame {
         });
 
         lblNumero.setBackground(new java.awt.Color(255, 255, 255));
-        lblNumero.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblNumero.setForeground(new java.awt.Color(255, 255, 255));
         lblNumero.setText("Número:");
 
         lblComplemento.setBackground(new java.awt.Color(255, 255, 255));
-        lblComplemento.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblComplemento.setForeground(new java.awt.Color(255, 255, 255));
         lblComplemento.setText("Complemento:");
 
         lblCEP.setBackground(new java.awt.Color(255, 255, 255));
-        lblCEP.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblCEP.setForeground(new java.awt.Color(255, 255, 255));
         lblCEP.setText("CEP:");
 
         lblBairro.setBackground(new java.awt.Color(255, 255, 255));
-        lblBairro.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblBairro.setForeground(new java.awt.Color(255, 255, 255));
         lblBairro.setText("Bairro:");
 
         lblCidade.setBackground(new java.awt.Color(255, 255, 255));
-        lblCidade.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblCidade.setForeground(new java.awt.Color(255, 255, 255));
         lblCidade.setText("Cidade:");
 
         lblEstado.setBackground(new java.awt.Color(255, 255, 255));
-        lblEstado.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblEstado.setForeground(new java.awt.Color(255, 255, 255));
         lblEstado.setText("Estado:");
 
@@ -291,8 +332,8 @@ public class EmprestimoLivro extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
@@ -305,9 +346,47 @@ public class EmprestimoLivro extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGerarEmprestimoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGerarEmprestimoActionPerformed
-        // TODO add your handling code here:
+        if (verficaData(dataRetiradatxt.getText())){
+            if (rbtnEntrega.isSelected()){
+                if (txtLogradouro.getText().equals("") || txtComplemento.getText().equals("") || txtCidade.getText().equals("") || txtNumero.getText().equals("")
+                        || txtBairro.getText().equals("") || txtCEP.getText().equals("") || (cbxEstado.getSelectedIndex() == 0)){
+                    JOptionPane.showMessageDialog(null, "Todos os campos devem ser preenchidos!", "ERRO", JOptionPane.ERROR_MESSAGE);
+                    txtLogradouro.requestFocus();
+                }
+                else{
+                    String complemento, numero, bairro, cidade, estado, cep, logradouro;
+                    complemento = txtComplemento.getText();
+                    numero = txtNumero.getText();
+                    bairro = txtBairro.getText();
+                    cidade = txtCidade.getText();
+                    cep = txtCEP.getText();
+                    logradouro = txtLogradouro.getText();
+                    estado = cbxEstado.getSelectedItem().toString();
+                    JOptionPane.showMessageDialog(null, "Empréstimo realizado com sucesso!", "Mensagem", JOptionPane.INFORMATION_MESSAGE);
+                }
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "Empréstimo realizado com sucesso!", "Mensagem", JOptionPane.INFORMATION_MESSAGE);
+            }
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Data Inválida!", "ERRO", JOptionPane.ERROR_MESSAGE);
+        }
+            
     }//GEN-LAST:event_btnGerarEmprestimoActionPerformed
-
+    
+    private boolean verficaData(String date){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        try{
+            LocalDate data = LocalDate.parse(date, formatter);
+            LocalDate atual = LocalDate.now();
+            long diferenca = ChronoUnit.DAYS.between(atual, data);
+            if (diferenca >= 0)
+                return true;
+        } catch (DateTimeParseException e){}
+        return false;
+    }
+    
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         this.setVisible(false);
     }//GEN-LAST:event_btnCancelarActionPerformed
@@ -316,9 +395,44 @@ public class EmprestimoLivro extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtLogradouroActionPerformed
 
-    private void btnEntregaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntregaActionPerformed
+    private void rbtnEntregaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnEntregaActionPerformed
+        if (rbtnEntrega.isSelected()){
+            txtLogradouro.setEnabled(true);
+            txtComplemento.setEnabled(true);
+            txtNumero.setEnabled(true);
+            txtCEP.setEnabled(true);
+            txtCidade.setEnabled(true);
+            txtBairro.setEnabled(true);
+            cbxEstado.setEnabled(true);
+            txtLogradouro.requestFocus();
+        }
+        else{
+            txtComplemento.setEnabled(false);
+            txtLogradouro.setEnabled(false);
+            txtNumero.setEnabled(false);
+            txtCEP.setEnabled(false);
+            txtCidade.setEnabled(false);
+            txtBairro.setEnabled(false);
+            cbxEstado.setEnabled(false);
+        }
+    }//GEN-LAST:event_rbtnEntregaActionPerformed
 
-    }//GEN-LAST:event_btnEntregaActionPerformed
+    private void gerarDatabtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gerarDatabtnActionPerformed
+        String di = dataRetiradatxt.getText();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        try{
+            LocalDate data = LocalDate.parse(di, formatter);
+            if (verficaData(di)){
+                LocalDate df = data.plusMonths(1);
+                dataDevolucaolbl.setText(df.format(formatter));
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "Data Inválida!", "ERRO", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (DateTimeParseException e) {
+            JOptionPane.showMessageDialog(null, "Data Inválida!", "ERRO", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_gerarDatabtnActionPerformed
 
 
     public static void main(String args[]) {
@@ -355,12 +469,12 @@ public class EmprestimoLivro extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
-    private javax.swing.JRadioButton btnEntrega;
     private javax.swing.JButton btnGerarEmprestimo;
     private javax.swing.JComboBox<String> cbxEstado;
-    private javax.swing.JLabel dataDevolucao;
+    private javax.swing.JLabel dataDevolucaolbl;
     private javax.swing.JLabel dataEmprestimo;
-    private javax.swing.JLabel gerarDevolucao;
+    private javax.swing.JFormattedTextField dataRetiradatxt;
+    private javax.swing.JButton gerarDatabtn;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JSeparator jSeparator1;
@@ -372,7 +486,11 @@ public class EmprestimoLivro extends javax.swing.JFrame {
     private javax.swing.JLabel lblLogradouro;
     private javax.swing.JLabel lblNumero;
     private javax.swing.JLabel nomeLivro;
+    private javax.swing.JLabel nomeLivrolbl;
     private javax.swing.JLabel nomeSolicitante;
+    private javax.swing.JLabel nomeSolicitantelbl;
+    private javax.swing.JLabel nomeUserlbl;
+    private javax.swing.JRadioButton rbtnEntrega;
     private javax.swing.JLabel solicitante;
     private javax.swing.JLabel titulo;
     private javax.swing.JTextField txtBairro;

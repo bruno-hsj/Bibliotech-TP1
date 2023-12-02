@@ -202,7 +202,7 @@ public class Cliente {
      * @return Retorna a idade do cliente.
      */
     public int calculaIdade(){
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/mm/yyyy");
         LocalDate data = LocalDate.parse(this.dataNascimento, formatter);
         LocalDate atual = LocalDate.now();
         Period idade = Period.between(data , atual);
