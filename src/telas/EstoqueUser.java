@@ -4,6 +4,16 @@
  */
 package telas;
 
+import projeto.BancoDeDados;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import projeto.Livro;
+import projeto.Obra;
+import projeto.Quadrinho;
+import projeto.Revista;
+
 /**
  *
  * @author user
@@ -12,9 +22,19 @@ public class EstoqueUser extends javax.swing.JFrame {
 
     /**
      * Creates new form EstoqueUser
+     * Tabela de Obras, Livros, Quadrinhos e Revistas
      */
     
-    
+     public String buscaNome;
+     public String buscaGenero;
+     public String buscaAutor;
+     public String buscaEditora;
+     
+     ArrayList<Obra> obras = new ArrayList<Obra>();
+     ArrayList<Livro> livros = new ArrayList<Livro>();
+     ArrayList<Quadrinho> quadrinhos = new ArrayList<Quadrinho>();
+     ArrayList<Revista> revistas = new ArrayList<Revista>();
+
     
     public EstoqueUser() {
         initComponents();
@@ -24,7 +44,31 @@ public class EstoqueUser extends javax.swing.JFrame {
         
     }
 
-   
+    public void carregaTabelaUser() {
+        DefaultTableModel modelo = new DefaultTableModel(new Object[] {"Título", "Gênero", "Tipo", "Páginas", "FaixaEtaria", "Publicacao", "Autor", "Editora", "qtdEstoque"}, 0);
+        
+        for(int i = 0; i < size(BancoDeDados.lerArquivo("Bibliotecario", "Obras")); i++){
+            Object linha [] = new Object[] {BancoDeDados.lerArquivo("Bibliotecario", "Obras") };
+                    
+            modelo.addRow(linha);
+        }
+        
+        tblEstoque.setModel(modelo);
+        
+        tblEstoque.getColumnModel().getColumn(0).setPreferredWidth(15);
+        tblEstoque.getColumnModel().getColumn(1).setPreferredWidth(100);
+        tblEstoque.getColumnModel().getColumn(2).setPreferredWidth(50);
+        tblEstoque.getColumnModel().getColumn(3).setPreferredWidth(20);
+        tblEstoque.getColumnModel().getColumn(4).setPreferredWidth(5);
+        tblEstoque.getColumnModel().getColumn(5).setPreferredWidth(5);
+        tblEstoque.getColumnModel().getColumn(6).setPreferredWidth(20);
+        tblEstoque.getColumnModel().getColumn(7).setPreferredWidth(50);
+        tblEstoque.getColumnModel().getColumn(8).setPreferredWidth(50);
+        tblEstoque.getColumnModel().getColumn(9).setPreferredWidth(20);
+        
+    }
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -63,7 +107,7 @@ public class EstoqueUser extends javax.swing.JFrame {
                 {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Titulo", "Gênero", "Idioma", "Páginas", "Faixa Etária", "Publicação", "Autor", "Editora", "Quantidade"
+                "Titulo", "Gênero", "Tipo", "Páginas", "Faixa Etária", "Publicação", "Autor", "Editora", "Quantidade"
             }
         ) {
             Class[] types = new Class [] {
@@ -102,6 +146,11 @@ public class EstoqueUser extends javax.swing.JFrame {
         btnBuscarLivro.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnBuscarLivro.setText("BUSCAR");
         btnBuscarLivro.setToolTipText("");
+        btnBuscarLivro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarLivroActionPerformed(evt);
+            }
+        });
 
         labelBuscarNomeLivro.setForeground(new java.awt.Color(255, 255, 255));
         labelBuscarNomeLivro.setText("Nome do Livro");
@@ -266,6 +315,33 @@ public class EstoqueUser extends javax.swing.JFrame {
        new EmprestimoLivro().setVisible(true);        
     }//GEN-LAST:event_btnEmprestimoActionPerformed
 
+    private void btnBuscarLivroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarLivroActionPerformed
+    //Botão de Busca.
+    
+           if(BancoDeDados.in(buscaNome, "Bibliotecario", "Obras") ){
+                //Código para exibir resultado da busca por nome.
+                
+            } 
+           
+           if(BancoDeDados.in(buscaGenero, "Bibliotecario", "Obras") ){
+                //Código para exibir resultado da busca por genero.
+                
+            }
+           
+           if(BancoDeDados.in(buscaEditora, "Bibliotecario", "Obras") ){
+                //Código para exibir resultado da busca por editora.
+                
+            }
+           
+           if(BancoDeDados.in(buscaAutor, "Bibliotecario", "Obras") ){
+                //Código para exibir resultado da busca por autor.
+                
+            }
+           
+
+
+    }//GEN-LAST:event_btnBuscarLivroActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -318,4 +394,8 @@ public class EstoqueUser extends javax.swing.JFrame {
     private javax.swing.JTextField txtBuscarGeneroLivro;
     private javax.swing.JTextField txtBuscarNomeLivro;
     // End of variables declaration//GEN-END:variables
+
+    private int size(List<String> lerArquivo) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

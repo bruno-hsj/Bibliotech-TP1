@@ -214,6 +214,12 @@ public class MainMenu extends javax.swing.JFrame {
         BancoDeDados.criarArquivo("Cadastro");
         BancoDeDados.criarArquivo("User");
         //BancoDeDados.criarArquivo("Senha");
+        
+        BancoDeDados.criarDiretorio("Bibliotecario");
+        BancoDeDados.criarArquivo("Obras");
+        BancoDeDados.criarArquivo("LIvro");
+        BancoDeDados.criarArquivo("Autor");
+        BancoDeDados.criarArquivo("Editora");
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new MainMenu().setVisible(true);
