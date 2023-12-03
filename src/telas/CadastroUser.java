@@ -6,6 +6,8 @@ package telas;
 
 import javax.swing.JOptionPane;
 import projeto.BancoDeDados;
+import projeto.Cliente;
+import static telas.MainMenu.listaClientes;
 
 /**
  *
@@ -190,7 +192,7 @@ public class CadastroUser extends javax.swing.JFrame {
                 txtNewUsuario.requestFocus();
             }
             else if (usuario.contains(" ")){
-                JOptionPane.showMessageDialog(null, "Não utiliza espaços!", "ERRO", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Não utilize espaços!", "ERRO", JOptionPane.ERROR_MESSAGE);
                 txtNewUsuario.requestFocus();
             }
             else{    
@@ -199,6 +201,7 @@ public class CadastroUser extends javax.swing.JFrame {
                 BancoDeDados.escrever(linha, "Cliente", "Cadastro");
                 BancoDeDados.escrever(login, "Cliente", "Login");
                 BancoDeDados.escrever(usuario, "Cliente", "User");
+                listaClientes.add(new Cliente(usuario, senha, telefone, email));
                 this.setVisible(false);
             }
         }

@@ -1,13 +1,18 @@
 package telas;
 
 import javax.swing.JOptionPane;
+import java.util.ArrayList;
 import projeto.BancoDeDados;
 import projeto.Bibliotecario;
+import projeto.Cliente;
+import projeto.Emprestimo;
 
 public class MainMenu extends javax.swing.JFrame {
 
     public static String usuario;
     public String linha;
+    public static ArrayList<Emprestimo> listaEmprestimos = new ArrayList<>();
+    public static ArrayList<Cliente> listaClientes = new ArrayList<>();
             
     public MainMenu() {
         initComponents();
@@ -220,6 +225,25 @@ public class MainMenu extends javax.swing.JFrame {
         BancoDeDados.criarArquivo("LIvro");
         BancoDeDados.criarArquivo("Autor");
         BancoDeDados.criarArquivo("Editora");
+        BancoDeDados.criarArquivo("Emprestimo");
+        
+        BancoDeDados.criarDiretorio("Bibliotecario");
+        BancoDeDados.criarArquivo("Livro");
+        BancoDeDados.criarArquivo("Autor");
+        BancoDeDados.criarArquivo("Editora");
+        
+        ArrayList<String> lista = (ArrayList<String>) BancoDeDados.lerArquivo("Cliente", "Emprestimo");
+        for (String i : lista){
+            String[] aux = i.split(" ");
+            //listaEmprestimos.add(new Emprestimo(aux[0], aux[1]));
+        }
+                
+        ArrayList<String> list = (ArrayList<String>) BancoDeDados.lerArquivo("Cliente", "Cadastro");
+        for (String sub : list){
+            String[] aux = sub.split(" ");
+            listaClientes.add(new Cliente(aux[0], aux[1], aux[2], aux[3]));
+        }
+        
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new MainMenu().setVisible(true);

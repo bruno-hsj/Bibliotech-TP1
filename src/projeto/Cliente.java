@@ -46,6 +46,21 @@ public class Cliente {
         this.dataNascimento = dataNascimento;
     }
     
+    
+    /**
+     * Cria um objeto Cliente com as informações de cadastro inicializadas.
+     * @param usuario O usuario do cliente.
+     * @param senha A senha do cliente.
+     * @param telefone O número de telefone do cliente.
+     * @param email O email do cliente.
+     */
+    public Cliente(String usuario, String senha, String telefone, String email) {
+        this.usuario = usuario;
+        this.senha = senha;
+        this.telefone = telefone;
+        this.email = email;
+    }
+    
     /**
      * Obtém o usuário do cliente.
      * @return Retorna o usuário do cliente.
@@ -78,6 +93,15 @@ public class Cliente {
      */
     public double getSaldo() {
         return saldo;
+    }
+    
+    
+    /**
+     * Obtém a senha do cliente.
+     * @return Retorna a senha do cliente.
+     */
+    public String getSenha() {
+        return senha;
     }
     
     
@@ -202,7 +226,7 @@ public class Cliente {
      * @return Retorna a idade do cliente.
      */
     public int calculaIdade(){
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/mm/yyyy");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate data = LocalDate.parse(this.dataNascimento, formatter);
         LocalDate atual = LocalDate.now();
         Period idade = Period.between(data , atual);

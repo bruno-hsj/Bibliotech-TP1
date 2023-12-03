@@ -346,6 +346,10 @@ public class EmprestimoLivro extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGerarEmprestimoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGerarEmprestimoActionPerformed
+        String user = MainMenu.usuario;
+        String livro = nomeLivrolbl.getText();
+        String linha = user + " " + livro;
+        
         if (verficaData(dataRetiradatxt.getText())){
             if (rbtnEntrega.isSelected()){
                 if (txtLogradouro.getText().equals("") || txtComplemento.getText().equals("") || txtCidade.getText().equals("") || txtNumero.getText().equals("")
@@ -362,11 +366,14 @@ public class EmprestimoLivro extends javax.swing.JFrame {
                     cep = txtCEP.getText();
                     logradouro = txtLogradouro.getText();
                     estado = cbxEstado.getSelectedItem().toString();
-                    JOptionPane.showMessageDialog(null, "Empréstimo realizado com sucesso!", "Mensagem", JOptionPane.INFORMATION_MESSAGE);
+                    
+                    JOptionPane.showMessageDialog(null, "Empréstimo realizado com sucesso!", "Mensagem", JOptionPane.INFORMATION_MESSAGE);    
+                    BancoDeDados.escrever(linha, "Cliente", "Emprestimo");
                 }
             }
             else{
                 JOptionPane.showMessageDialog(null, "Empréstimo realizado com sucesso!", "Mensagem", JOptionPane.INFORMATION_MESSAGE);
+                BancoDeDados.escrever(linha, "Cliente", "Emprestimo");
             }
         }
         else{

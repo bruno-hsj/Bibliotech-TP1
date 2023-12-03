@@ -4,19 +4,54 @@
  */
 package telas;
 
+import java.util.ArrayList;
+import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
+import projeto.BancoDeDados;
+import projeto.Cliente;
+import static telas.MainMenu.listaClientes;
+
 /**
  *
  * @author user
  */
 public class DetalhesContaUser extends javax.swing.JFrame {
 
+    private String linhaAntiga, loginAntigo, userAntigo;
     /**
      * Creates new form DetalhesContaUser
      */
     public DetalhesContaUser() {
         initComponents();
+        
+        for (Cliente c : listaClientes){
+            System.out.print(c.getUsuario());
+            System.out.println(MainMenu.usuario);
+            if (c.getUsuario().equals(MainMenu.usuario)){
+                txtSenha.setText(c.getSenha());
+                txtEditaEmail.setText(c.getEmail());
+                txtEditaTelefone.setText(c.getTelefone());
+                txtEditaUsuario.setText(c.getUsuario());
+                break;
+            }
+        }
+        
+        txtSenha.setEnabled(false);
+        txtEditaEmail.setEnabled(false);
+        txtEditaTelefone.setEnabled(false);
+        txtEditaUsuario.setEnabled(false);
+        
+        btnCancelar.setEnabled(false);
+        btnSalvarLivro.setEnabled(false);
+        btnEditarLivro.setEnabled(true);
     }
-
+    
+    private void carregaLista(){
+        DefaultListModel modelo = new DefaultListModel();
+        
+    }
+    
+        
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -41,7 +76,6 @@ public class DetalhesContaUser extends javax.swing.JFrame {
         txtEditaUsuario = new javax.swing.JTextField();
         labelSenha = new javax.swing.JLabel();
         labelEditaTelefone = new javax.swing.JLabel();
-        txtEditaTelefone = new javax.swing.JTextField();
         txtEditaEmail = new javax.swing.JTextField();
         labelEmail = new javax.swing.JLabel();
         btnCancelar = new javax.swing.JButton();
@@ -49,7 +83,11 @@ public class DetalhesContaUser extends javax.swing.JFrame {
         btnSalvarLivro = new javax.swing.JButton();
         btnPagarMulta1 = new javax.swing.JButton();
         btnSair = new javax.swing.JButton();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        txtSenha = new javax.swing.JPasswordField();
+        jLabel1 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        lstEmprestimos = new javax.swing.JList<>();
+        txtEditaTelefone = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("BiblioTech | Detalhes da Conta");
@@ -84,12 +122,6 @@ public class DetalhesContaUser extends javax.swing.JFrame {
         labelSenha.setText("Senha");
 
         labelEditaTelefone.setText("Telefone");
-
-        txtEditaTelefone.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtEditaTelefoneActionPerformed(evt);
-            }
-        });
 
         txtEditaEmail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -127,15 +159,29 @@ public class DetalhesContaUser extends javax.swing.JFrame {
         btnSair.setBackground(new java.awt.Color(149, 11, 13));
         btnSair.setText("Sair");
         btnSair.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSairActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel1.setText("EMPRÉSTIMOS ATIVOS");
+
+        lstEmprestimos.setBackground(new java.awt.Color(0, 0, 0));
+        lstEmprestimos.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jScrollPane2.setViewportView(lstEmprestimos);
+
+        try {
+            txtEditaTelefone.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("+##(##)#####-####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addComponent(titulo)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -148,41 +194,54 @@ public class DetalhesContaUser extends javax.swing.JFrame {
                         .addGap(57, 57, 57)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtEditaEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 273, Short.MAX_VALUE)
+                                    .addComponent(txtEditaUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 273, Short.MAX_VALUE)
+                                    .addComponent(txtSenha)
+                                    .addComponent(txtEditaTelefone))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(labelStatusMulta)
+                                        .addGap(57, 57, 57)
+                                        .addComponent(txtMostraStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(LabelAtraso)
+                                        .addGap(46, 46, 46)
+                                        .addComponent(txtMostraAtraso, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(labelSaldo)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(txtMostraSaldo, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                        .addComponent(labelDeposito)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(txtValorDeposito, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(btnPagarMulta1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btnPagarMulta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(btnSalvarLivro)
                                 .addGap(26, 26, 26)
                                 .addComponent(btnCancelar)
                                 .addGap(27, 27, 27)
-                                .addComponent(btnEditarLivro))
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(txtEditaEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 273, Short.MAX_VALUE)
-                                .addComponent(txtEditaUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 273, Short.MAX_VALUE)
-                                .addComponent(jPasswordField1)
-                                .addComponent(txtEditaTelefone, javax.swing.GroupLayout.Alignment.TRAILING)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 240, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(labelStatusMulta)
-                                .addGap(57, 57, 57)
-                                .addComponent(txtMostraStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(LabelAtraso)
-                                .addGap(46, 46, 46)
-                                .addComponent(txtMostraAtraso, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(labelSaldo)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txtMostraSaldo, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(labelDeposito)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txtValorDeposito, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btnPagarMulta1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnPagarMulta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addComponent(btnEditarLivro)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 756, Short.MAX_VALUE))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnSair, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnSair, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addGap(16, 16, 16)
+                                    .addComponent(titulo))
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addGap(465, 465, 465)
+                                    .addComponent(jLabel1))))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -202,7 +261,7 @@ public class DetalhesContaUser extends javax.swing.JFrame {
                     .addComponent(LabelAtraso)
                     .addComponent(txtMostraAtraso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelSenha)
-                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelSaldo)
@@ -221,7 +280,11 @@ public class DetalhesContaUser extends javax.swing.JFrame {
                     .addComponent(btnSalvarLivro)
                     .addComponent(btnCancelar)
                     .addComponent(btnEditarLivro))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 288, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
                 .addComponent(btnSair, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -245,25 +308,81 @@ public class DetalhesContaUser extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtEditaUsuarioActionPerformed
 
-    private void txtEditaTelefoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEditaTelefoneActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtEditaTelefoneActionPerformed
-
     private void txtEditaEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEditaEmailActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtEditaEmailActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-
+        txtSenha.setEnabled(false);
+        txtEditaEmail.setEnabled(false);
+        txtEditaTelefone.setEnabled(false);
+        txtEditaUsuario.setEnabled(false);
+        
+        btnCancelar.setEnabled(false);
+        btnSalvarLivro.setEnabled(false);
+        btnEditarLivro.setEnabled(true);
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnEditarLivroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarLivroActionPerformed
-
+        txtEditaUsuario.setEnabled(true);
+        txtSenha.setEnabled(true);
+        txtEditaTelefone.setEnabled(true);
+        txtEditaEmail.setEnabled(true);
+        txtEditaUsuario.requestFocus();
+        
+        linhaAntiga = txtEditaUsuario.getText() + " " + txtSenha.getText() + " " + txtEditaTelefone.getText() + " " + txtEditaEmail.getText();
+        loginAntigo = txtEditaUsuario.getText() + " " + txtSenha.getText();
+        userAntigo = txtEditaUsuario.getText();
+        
+        btnCancelar.setEnabled(true);
+        btnSalvarLivro.setEnabled(true);
+        btnEditarLivro.setEnabled(false);
     }//GEN-LAST:event_btnEditarLivroActionPerformed
 
     private void btnSalvarLivroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarLivroActionPerformed
-
+        txtSenha.setEnabled(false);
+        txtEditaEmail.setEnabled(false);
+        txtEditaTelefone.setEnabled(false);
+        txtEditaUsuario.setEnabled(false);
+        
+        btnCancelar.setEnabled(false);
+        btnSalvarLivro.setEnabled(false);
+        btnEditarLivro.setEnabled(true);
+        
+        String user, senha, email, telefone;
+        
+        user = txtEditaUsuario.getText();
+        senha = txtSenha.getText();
+        telefone = txtEditaTelefone.getText();
+        email = txtEditaEmail.getText();
+        String linha = user + " " + senha + " " + telefone + " " + email;
+        String login = user + " " + senha;
+        
+        if (BancoDeDados.in(user, "Cliente", "User")){
+            JOptionPane.showMessageDialog(null, "Usuário Inválido!", "ERRO", JOptionPane.ERROR_MESSAGE);
+            txtEditaUsuario.requestFocus();
+            }
+        else if (user.contains(" ")){
+            JOptionPane.showMessageDialog(null, "Não utilize espaços!", "ERRO", JOptionPane.ERROR_MESSAGE);
+            txtEditaUsuario.requestFocus();
+        }
+        else{
+            BancoDeDados.editaLinha(linhaAntiga, linha, "Cliente", "Cadastro");
+            BancoDeDados.editaLinha(loginAntigo, login, "Cliente", "Login");
+            BancoDeDados.editaLinha(userAntigo, user, "Cliente", "User");
+            
+            listaClientes.clear();
+            ArrayList<String> list = (ArrayList<String>) BancoDeDados.lerArquivo("Cliente", "Cadastro");
+            for (String sub : list){
+                String[] aux = sub.split(" ");
+                listaClientes.add(new Cliente(aux[0], aux[1], aux[2], aux[3]));
+            }
+        }
     }//GEN-LAST:event_btnSalvarLivroActionPerformed
+
+    private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
+        this.setVisible(false);
+    }//GEN-LAST:event_btnSairActionPerformed
 
     /**
      * @param args the command line arguments
@@ -308,8 +427,9 @@ public class DetalhesContaUser extends javax.swing.JFrame {
     private javax.swing.JButton btnPagarMulta1;
     private javax.swing.JButton btnSair;
     private javax.swing.JButton btnSalvarLivro;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPasswordField jPasswordField1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel labelDeposito;
     private javax.swing.JLabel labelEditaTelefone;
     private javax.swing.JLabel labelEmail;
@@ -317,13 +437,15 @@ public class DetalhesContaUser extends javax.swing.JFrame {
     private javax.swing.JLabel labelSenha;
     private javax.swing.JLabel labelStatusMulta;
     private javax.swing.JLabel labelUsuario;
+    private javax.swing.JList<String> lstEmprestimos;
     private javax.swing.JLabel titulo;
     private javax.swing.JTextField txtEditaEmail;
-    private javax.swing.JTextField txtEditaTelefone;
+    private javax.swing.JFormattedTextField txtEditaTelefone;
     private javax.swing.JTextField txtEditaUsuario;
     private javax.swing.JTextField txtMostraAtraso;
     private javax.swing.JTextField txtMostraSaldo;
     private javax.swing.JTextField txtMostraStatus;
+    private javax.swing.JPasswordField txtSenha;
     private javax.swing.JTextField txtValorDeposito;
     // End of variables declaration//GEN-END:variables
 }
