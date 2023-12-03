@@ -206,7 +206,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txtNomeAutor">
           <Properties>
-            <Property name="toolTipText" type="java.lang.String" value="Forne&#xe7;a seu usu&#xe1;rio"/>
+            <Property name="toolTipText" type="java.lang.String" value="Forne&#xe7;a o nome do autor"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtNomeAutorActionPerformed"/>
@@ -236,7 +236,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txtNacionalidadeAutor">
           <Properties>
-            <Property name="toolTipText" type="java.lang.String" value="Forne&#xe7;a seu usu&#xe1;rio"/>
+            <Property name="toolTipText" type="java.lang.String" value="Forne&#xe7;a a nacionalidade do autor"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtNacionalidadeAutorActionPerformed"/>
@@ -252,7 +252,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txtDataNascAutor">
           <Properties>
-            <Property name="toolTipText" type="java.lang.String" value="Forne&#xe7;a seu usu&#xe1;rio"/>
+            <Property name="toolTipText" type="java.lang.String" value="Forne&#xe7;a a data de nascimento do autor"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtDataNascAutorActionPerformed"/>
@@ -315,7 +315,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txtNomeEditora">
           <Properties>
-            <Property name="toolTipText" type="java.lang.String" value="Forne&#xe7;a seu usu&#xe1;rio"/>
+            <Property name="toolTipText" type="java.lang.String" value="Forne&#xe7;a o nome da editora"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtNomeEditoraActionPerformed"/>
@@ -331,7 +331,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txtOrigemEditora">
           <Properties>
-            <Property name="toolTipText" type="java.lang.String" value="Forne&#xe7;a seu usu&#xe1;rio"/>
+            <Property name="toolTipText" type="java.lang.String" value="Forne&#xe7;a o pais de origem da editora"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtOrigemEditoraActionPerformed"/>
@@ -347,7 +347,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txtFundacaoEditora">
           <Properties>
-            <Property name="toolTipText" type="java.lang.String" value="Forne&#xe7;a seu usu&#xe1;rio"/>
+            <Property name="toolTipText" type="java.lang.String" value="Forne&#xe7;a o ano de funda&#xe7;ao da editora"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtFundacaoEditoraActionPerformed"/>

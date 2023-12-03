@@ -46,7 +46,7 @@ public class CadastroAutorEditora extends javax.swing.JFrame {
     }
     
     public void carregaTabelaAutores() {
-        DefaultTableModel modelo = new DefaultTableModel(new Object[] {"nome", "nacionalidade", "dataNascimento"}, 0);
+        DefaultTableModel modelo = new DefaultTableModel(new Object[] {"Nome", "Nacionalidade", "DataNascimento"}, 0);
         
         for(int i = 0; i < listaAutores.size();i++) {
             Object linha[] = new Object[] {listaAutores.get(i).getNome(), listaAutores.get(i).getNacionalidade(), listaAutores.get(i).getDataNascimento()};
@@ -62,7 +62,7 @@ public class CadastroAutorEditora extends javax.swing.JFrame {
     }
     
     public void carregaTabelaEditoras() {
-        DefaultTableModel modelo = new DefaultTableModel(new Object[] {"nome", "paisOrigem", "anoFundacao"}, 0);
+        DefaultTableModel modelo = new DefaultTableModel(new Object[] {"Nome", "PaisOrigem", "AnoFundacao"}, 0);
         
         for(int i = 0; i < listaEditoras.size();i++) {
             Object linha[] = new Object[] {listaEditoras.get(i).getNome(), listaEditoras.get(i).getPaisOrigem(), listaEditoras.get(i).getAnoFundacao()};
@@ -129,7 +129,7 @@ public class CadastroAutorEditora extends javax.swing.JFrame {
         labelTitulo.setForeground(new java.awt.Color(255, 255, 255));
         labelTitulo.setText("Nome");
 
-        txtNomeAutor.setToolTipText("Forneça seu usuário");
+        txtNomeAutor.setToolTipText("Forneça o nome do autor");
         txtNomeAutor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNomeAutorActionPerformed(evt);
@@ -148,7 +148,7 @@ public class CadastroAutorEditora extends javax.swing.JFrame {
         lblNacionalidadeAutor.setForeground(new java.awt.Color(255, 255, 255));
         lblNacionalidadeAutor.setText("Nacionalidade");
 
-        txtNacionalidadeAutor.setToolTipText("Forneça seu usuário");
+        txtNacionalidadeAutor.setToolTipText("Forneça a nacionalidade do autor");
         txtNacionalidadeAutor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNacionalidadeAutorActionPerformed(evt);
@@ -158,7 +158,7 @@ public class CadastroAutorEditora extends javax.swing.JFrame {
         lblDataNascAutor.setForeground(new java.awt.Color(255, 255, 255));
         lblDataNascAutor.setText("Data de Nascimento");
 
-        txtDataNascAutor.setToolTipText("Forneça seu usuário");
+        txtDataNascAutor.setToolTipText("Forneça a data de nascimento do autor");
         txtDataNascAutor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtDataNascAutorActionPerformed(evt);
@@ -206,7 +206,7 @@ public class CadastroAutorEditora extends javax.swing.JFrame {
         lblNomeEditora.setForeground(new java.awt.Color(255, 255, 255));
         lblNomeEditora.setText("Nome");
 
-        txtNomeEditora.setToolTipText("Forneça seu usuário");
+        txtNomeEditora.setToolTipText("Forneça o nome da editora");
         txtNomeEditora.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNomeEditoraActionPerformed(evt);
@@ -216,7 +216,7 @@ public class CadastroAutorEditora extends javax.swing.JFrame {
         lblOrigemEditora.setForeground(new java.awt.Color(255, 255, 255));
         lblOrigemEditora.setText("País de Origem");
 
-        txtOrigemEditora.setToolTipText("Forneça seu usuário");
+        txtOrigemEditora.setToolTipText("Forneça o pais de origem da editora");
         txtOrigemEditora.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtOrigemEditoraActionPerformed(evt);
@@ -226,7 +226,7 @@ public class CadastroAutorEditora extends javax.swing.JFrame {
         lblFundacaoEditora.setForeground(new java.awt.Color(255, 255, 255));
         lblFundacaoEditora.setText("Ano de Fundação");
 
-        txtFundacaoEditora.setToolTipText("Forneça seu usuário");
+        txtFundacaoEditora.setToolTipText("Forneça o ano de fundaçao da editora");
         txtFundacaoEditora.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtFundacaoEditoraActionPerformed(evt);

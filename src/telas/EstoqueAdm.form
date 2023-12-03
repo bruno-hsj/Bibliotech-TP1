@@ -27,21 +27,12 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <EmptySpace min="0" pref="1226" max="32767" attributes="0"/>
-          <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-              </Group>
-          </Group>
+          <Component id="jPanel1" alignment="0" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <EmptySpace min="0" pref="595" max="32767" attributes="0"/>
-          <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
-              <Component id="jPanel1" alignment="1" max="32767" attributes="0"/>
-          </Group>
+          <Component id="jPanel1" alignment="1" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
@@ -62,73 +53,84 @@
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="txtTitulo" alignment="0" max="32767" attributes="0"/>
+                      <Component id="txtInfos" alignment="0" max="32767" attributes="0"/>
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="txtTitulo" alignment="0" max="32767" attributes="0"/>
-                              <Component id="txtGenero" alignment="0" max="32767" attributes="0"/>
-                              <Component id="txtIdioma" alignment="0" max="32767" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="btnPesquisarLivro" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="btnBuscarLivro" max="32767" attributes="0"/>
-                                      <Component id="txtCampoPesquisa" max="32767" attributes="0"/>
+                                  <Component id="btnNovoLivro" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                                  <Component id="btnSalvarLivro" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Group type="102" attributes="0">
+                                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                              <Component id="labelQtdPaginas" alignment="0" pref="128" max="32767" attributes="0"/>
+                                              <Component id="txtQtdPaginas" alignment="0" max="32767" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace pref="40" max="32767" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                              <Component id="labelIdade" min="-2" max="-2" attributes="0"/>
+                                              <Component id="txtFaixaEtaria" pref="122" max="32767" attributes="0"/>
+                                              <Component id="labelDataPublicacao" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Component id="txtDataPublicacao" alignment="0" pref="122" max="32767" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                      <Component id="labelAddAutor" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="labelAddEditora" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="dropAutor" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="dropEditora" alignment="0" max="32767" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="-2" pref="89" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Group type="103" groupAlignment="1" attributes="0">
+                                          <Group type="102" attributes="0">
+                                              <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
+                                              <Component id="btnExcluirLivro" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Component id="labelTipoObra" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="checkLivro" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Component id="checkQuadrinho" min="-2" max="-2" attributes="0"/>
+                                      <Component id="checkRevista" min="-2" max="-2" attributes="0"/>
+                                      <Component id="labelTipoObra1" max="32767" attributes="0"/>
+                                      <Component id="spnIncrementaEstoque" alignment="0" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
-                          </Group>
-                          <EmptySpace max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="labelQtdPaginas" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="txtQtdPaginas" alignment="0" min="-2" pref="122" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="labelIdade" min="-2" max="-2" attributes="0"/>
-                              <Component id="txtQtdPaginas2" min="-2" pref="122" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace pref="66" max="32767" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="txtQtdPaginas1" min="-2" pref="122" max="-2" attributes="0"/>
-                              <Component id="labelDataPublicacao" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="labelTitulo" min="-2" max="-2" attributes="0"/>
                               <Component id="labelGenero" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="labelIdioma" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="titulo" min="-2" max="-2" attributes="0"/>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="btnNovoLivro" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="btnSalvarLivro" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="btnCancelar" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                                  <Component id="btnEditarLivro" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="btnExcluirLivro" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="btnNovoLivro1" min="-2" pref="162" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
-                                  <Component id="jSpinner1" min="-2" pref="76" max="-2" attributes="0"/>
-                              </Group>
                               <Component id="btnSair" alignment="0" min="-2" pref="80" max="-2" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="214" max="-2" attributes="0"/>
+                                  <Component id="btnCancelar" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                                  <Component id="btnEditarLivro" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Component id="txtIdioma" alignment="0" min="-2" pref="128" max="-2" attributes="0"/>
+                              <Component id="labelAddEditora1" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="btnPesquisarLivro" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="btnBuscarLivro" pref="417" max="32767" attributes="0"/>
+                                      <Component id="txtCampoPesquisa" max="32767" attributes="0"/>
+                                  </Group>
+                              </Group>
                           </Group>
-                          <EmptySpace max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
-                  <Component id="jScrollPane1" min="-2" pref="687" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Component id="tblInfosEstoque" pref="865" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
+              <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="titulo" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -138,82 +140,86 @@
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="labelGenero" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="txtGenero" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtInfos" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="labelIdioma" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="txtIdioma" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="labelQtdPaginas" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="labelIdade" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="labelDataPublicacao" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="txtQtdPaginas1" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="txtQtdPaginas" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtQtdPaginas2" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <Component id="labelIdioma" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="txtIdioma" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="labelQtdPaginas" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="txtQtdPaginas" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="62" pref="62" max="-2" attributes="0"/>
+                                  <Component id="labelIdade" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="txtFaixaEtaria" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="labelDataPublicacao" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="txtDataPublicacao" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="labelAddAutor" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="labelTipoObra1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="dropAutor" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="spnIncrementaEstoque" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="labelAddEditora" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="dropEditora" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="btnNovoLivro" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnSalvarLivro" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnCancelar" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnEditarLivro" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnExcluirLivro" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                          <Component id="labelAddEditora1" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="labelTipoObra" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="checkLivro" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="checkQuadrinho" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="checkRevista" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="btnNovoLivro" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="btnSalvarLivro" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="btnCancelar" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="btnEditarLivro" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="btnExcluirLivro" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="btnNovoLivro1" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
-                      <Component id="jSpinner1" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="txtCampoPesquisa" min="-2" max="-2" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <Component id="txtCampoPesquisa" min="-2" pref="22" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="btnBuscarLivro" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <Component id="btnPesquisarLivro" min="-2" pref="51" max="-2" attributes="0"/>
+                      <Component id="btnPesquisarLivro" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="115" max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
                   <Component id="btnSair" min="-2" pref="33" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
-              <Component id="jScrollPane1" alignment="0" max="32767" attributes="0"/>
+              <Component id="tblInfosEstoque" alignment="1" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Container class="javax.swing.JScrollPane" name="jScrollPane1">
-          <AuxValues>
-            <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
-          </AuxValues>
-
-          <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
-          <SubComponents>
-            <Component class="javax.swing.JTable" name="tblEstoque">
-              <Properties>
-                <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                  <Table columnCount="9" rowCount="4">
-                    <Column editable="false" title="Titulo" type="java.lang.String"/>
-                    <Column editable="false" title="G&#xea;nero" type="java.lang.String"/>
-                    <Column editable="false" title="Idioma" type="java.lang.String"/>
-                    <Column editable="false" title="P&#xe1;ginas" type="java.lang.Integer"/>
-                    <Column editable="false" title="Faixa Et&#xe1;ria" type="java.lang.Integer"/>
-                    <Column editable="false" title="Publica&#xe7;&#xe3;o" type="java.lang.Float"/>
-                    <Column editable="false" title="Autor" type="java.lang.String"/>
-                    <Column editable="false" title="Editora" type="java.lang.String"/>
-                    <Column editable="true" title="Quantidade" type="java.lang.Integer"/>
-                  </Table>
-                </Property>
-              </Properties>
-            </Component>
-          </SubComponents>
-        </Container>
         <Component class="javax.swing.JLabel" name="titulo">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -225,6 +231,36 @@
             <Property name="text" type="java.lang.String" value="ESTOQUE | ADMIN"/>
           </Properties>
         </Component>
+        <Container class="javax.swing.JScrollPane" name="tblInfosEstoque">
+          <AuxValues>
+            <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+          </AuxValues>
+
+          <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+          <SubComponents>
+            <Component class="javax.swing.JTable" name="tblEstoque">
+              <Properties>
+                <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+                  <Table columnCount="10" rowCount="4">
+                    <Column editable="false" title="Tipo Obra" type="java.lang.String"/>
+                    <Column editable="false" title="Titulo" type="java.lang.String"/>
+                    <Column editable="false" title="Informa&#xe7;&#xf5;es Obra" type="java.lang.String"/>
+                    <Column editable="false" title="Idioma" type="java.lang.String"/>
+                    <Column editable="false" title="P&#xe1;ginas" type="java.lang.Integer"/>
+                    <Column editable="false" title="Faixa Et&#xe1;ria" type="java.lang.Integer"/>
+                    <Column editable="false" title="Publica&#xe7;&#xe3;o" type="java.lang.Float"/>
+                    <Column editable="false" title="Autor" type="java.lang.String"/>
+                    <Column editable="false" title="Editora" type="java.lang.String"/>
+                    <Column editable="true" title="Quantidade" type="java.lang.Integer"/>
+                  </Table>
+                </Property>
+              </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tblEstoqueMouseClicked"/>
+              </Events>
+            </Component>
+          </SubComponents>
+        </Container>
         <Component class="javax.swing.JLabel" name="labelTitulo">
           <Properties>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -235,7 +271,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txtTitulo">
           <Properties>
-            <Property name="toolTipText" type="java.lang.String" value="Forne&#xe7;a seu usu&#xe1;rio"/>
+            <Property name="toolTipText" type="java.lang.String" value="Forne&#xe7;a o titulo do livro"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtTituloActionPerformed"/>
@@ -246,15 +282,15 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="G&#xea;nero"/>
+            <Property name="text" type="java.lang.String" value="Infos. Revista / Quadrinho / Livro"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtGenero">
+        <Component class="javax.swing.JTextField" name="txtInfos">
           <Properties>
-            <Property name="toolTipText" type="java.lang.String" value="Forne&#xe7;a seu usu&#xe1;rio"/>
+            <Property name="toolTipText" type="java.lang.String" value="Forne&#xe7;a as informa&#xe7;oes adicionais da obra"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtGeneroActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtInfosActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="labelIdioma">
@@ -267,7 +303,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txtIdioma">
           <Properties>
-            <Property name="toolTipText" type="java.lang.String" value="Forne&#xe7;a seu usu&#xe1;rio"/>
+            <Property name="toolTipText" type="java.lang.String" value="Forne&#xe7;a o idioma"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtIdiomaActionPerformed"/>
@@ -283,7 +319,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txtQtdPaginas">
           <Properties>
-            <Property name="toolTipText" type="java.lang.String" value="Forne&#xe7;a seu usu&#xe1;rio"/>
+            <Property name="toolTipText" type="java.lang.String" value="Forne&#xe7;a a quantidade de paginas"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtQtdPaginasActionPerformed"/>
@@ -349,7 +385,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txtCampoPesquisa">
           <Properties>
-            <Property name="toolTipText" type="java.lang.String" value="Insira o CPF que voce deseja pesquisar"/>
+            <Property name="toolTipText" type="java.lang.String" value="Insira o nome da obra que esta procurando"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="btnBuscarLivro">
@@ -363,11 +399,21 @@
             <Property name="text" type="java.lang.String" value="BUSCAR"/>
             <Property name="toolTipText" type="java.lang.String" value=""/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBuscarLivroActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnPesquisarLivro">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="7e" green="62" red="4e" type="rgb"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Pesquisar"/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnPesquisarLivroMouseClicked"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPesquisarLivroActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnSair">
           <Properties>
@@ -379,33 +425,101 @@
               <Color id="Hand Cursor"/>
             </Property>
           </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="txtQtdPaginas1">
-          <Properties>
-            <Property name="toolTipText" type="java.lang.String" value="Forne&#xe7;a seu usu&#xe1;rio"/>
-          </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtQtdPaginas1ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSairActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtQtdPaginas2">
+        <Component class="javax.swing.JTextField" name="txtDataPublicacao">
           <Properties>
-            <Property name="toolTipText" type="java.lang.String" value="Forne&#xe7;a seu usu&#xe1;rio"/>
+            <Property name="toolTipText" type="java.lang.String" value="Forne&#xe7;a a data de publicacao"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtQtdPaginas2ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtDataPublicacaoActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JSpinner" name="jSpinner1">
-        </Component>
-        <Component class="javax.swing.JButton" name="btnNovoLivro1">
+        <Component class="javax.swing.JTextField" name="txtFaixaEtaria">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Adicionar ao Estoque"/>
-            <Property name="toolTipText" type="java.lang.String" value=""/>
+            <Property name="toolTipText" type="java.lang.String" value="Forne&#xe7;a a faixa etaria"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnNovoLivro1ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtFaixaEtariaActionPerformed"/>
           </Events>
+        </Component>
+        <Component class="javax.swing.JSpinner" name="spnIncrementaEstoque">
+        </Component>
+        <Component class="javax.swing.JComboBox" name="dropAutor">
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+          </AuxValues>
+        </Component>
+        <Component class="javax.swing.JComboBox" name="dropEditora">
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+          </AuxValues>
+        </Component>
+        <Component class="javax.swing.JCheckBox" name="checkQuadrinho">
+          <Properties>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Quadrinho"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JCheckBox" name="checkRevista">
+          <Properties>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Revista"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JCheckBox" name="checkLivro">
+          <Properties>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Livro"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="labelAddAutor">
+          <Properties>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Adicionar Autor"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="labelAddEditora">
+          <Properties>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Adicionar Editora"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="labelTipoObra">
+          <Properties>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Tipo de Obra"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="labelTipoObra1">
+          <Properties>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Quantidade no Estoque"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="labelAddEditora1">
+          <Properties>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Realizar pesquisa pelo t&#xed;tulo da obra"/>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>
