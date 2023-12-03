@@ -7,7 +7,21 @@ package projeto;
  */
 public abstract class Bibliotecario {
     private static String usuario = "admin";
-    private static String senha = "012345678";
+    private static String senha = "admin";
+    
+    // Getters e Setters
+    public static String getUsuario() {
+        return usuario;
+    }
+    public static void setUsuario(String usuario) {
+        Bibliotecario.usuario = usuario;
+    }
+    public static String getSenha() {
+        return senha;
+    }
+    public static void setSenha(String senha) {
+        Bibliotecario.senha = senha;
+    }
     
     
     /**

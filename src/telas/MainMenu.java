@@ -1,15 +1,13 @@
 package telas;
 
+import javax.swing.JOptionPane;
 import projeto.BancoDeDados;
+import projeto.Bibliotecario;
 
 public class MainMenu extends javax.swing.JFrame {
 
-    
-    private String admUserBruno = "bruno";
-    private String admUserLayr = "layr";
-    private String admUserLucca = "lucca";
-    private String admPassword = "12345";
     public static String usuario;
+    public String linha;
             
     public MainMenu() {
         initComponents();
@@ -156,11 +154,24 @@ public class MainMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_txtLoginActionPerformed
 
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
-        if((txtLogin.getText().equals(admUserBruno) || txtLogin.getText().equals(admUserLayr) || txtLogin.getText().equals(admUserLucca)) && txtSenha.getText().equals(admPassword) && cbCheckAdm.isSelected()) {
+
+        if(txtLogin.getText().equals(Bibliotecario.getUsuario()) && txtSenha.getText().equals(Bibliotecario.getSenha()) && cbCheckAdm.isSelected()) {
+            //Verificação no IF se usuário faz parte de usuário administrador
+         
             new AdmLogado().setVisible(true);
-        } else {
-            usuario = txtLogin.getText();
-            new UserLogado().setVisible(true);
+            
+        }
+        else{
+           //Busca em BancoDeDados se existe User e Senha compatíveis. 
+           linha = txtLogin.getText() + " " + txtSenha.getText();
+           if(BancoDeDados.in(linha, "Cliente", "Login") ){
+                new UserLogado().setVisible(true);
+                
+            } else {
+            //Caso não encontre usuário válido, exibir mensagem de erro.
+                JOptionPane.showMessageDialog(null, "Considere realizar o cadastro de usuário!", "Usuário ou Senha inválidos!", JOptionPane.PLAIN_MESSAGE); 
+
+            }    
         }
     }//GEN-LAST:event_btnEntrarActionPerformed
 
@@ -202,6 +213,7 @@ public class MainMenu extends javax.swing.JFrame {
         BancoDeDados.criarArquivo("Login");
         BancoDeDados.criarArquivo("Cadastro");
         BancoDeDados.criarArquivo("User");
+        //BancoDeDados.criarArquivo("Senha");
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new MainMenu().setVisible(true);
