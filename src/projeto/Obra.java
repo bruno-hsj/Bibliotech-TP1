@@ -1,7 +1,7 @@
 package projeto;
 
 /**
- * Uma classe que se refere ? obras de uma biblioteca.
+ * Uma classe que se refere a obras de uma biblioteca.
  * @author netol
  */
 public class Obra {
@@ -12,9 +12,10 @@ public class Obra {
     private int qntdPaginas;
     private int faixaEtaria;
     private String dataPublicacao;
-    String infosObras;
+    private String infosObras;
     private Autor autor;
     private Editora editora;
+    public String tipo;
     
     /**
      * Cria um objeto Obra com nenhum atributo inicializado.
@@ -25,10 +26,37 @@ public class Obra {
     
     /**
      * Cria um objeto Obra com os atributos de cadastro inicializados.
-     * @param titulo O t?tulo da obra.
+     * @param infos A informação da obra.
+     * @param titulo O titulo da obra.
      * @param idioma O idioma que a obra foi escrita.
-     * @param qntdPaginas A quantidade de p?ginas da obra.
-     * @param faixaEtaria A faixa et?ria da obra.
+     * @param qntdPaginas A quantidade de paginas da obra.
+     * @param faixaEtaria A faixa etaria da obra.
+     * @param dataPublicacao A data que a obra foi publicada.
+     * @param autor O autor da obra.
+     * @param editora A editora que publicou a obra.
+     * @param tipo O tipo de obra.
+     */
+    public Obra(String infos, String titulo, String idioma, int qntdPaginas, int faixaEtaria, String dataPublicacao, Autor autor, Editora editora, String tipo) {
+        this.titulo = titulo;
+        this.idioma = idioma;
+        this.qntdPaginas = qntdPaginas;
+        this.faixaEtaria = faixaEtaria;
+        this.dataPublicacao = dataPublicacao;
+        this.autor = autor;
+        this.editora = editora;
+        this.infosObras = infos;
+        this.tipo = tipo;
+        id = auxId;        
+        auxId ++;           
+    }
+    
+    
+    /**
+     * Cria um objeto Obra com os atributos de cadastro inicializados.
+     * @param titulo O titulo da obra.
+     * @param idioma O idioma que a obra foi escrita.
+     * @param qntdPaginas A quantidade de paginas da obra.
+     * @param faixaEtaria A faixa etaria da obra.
      * @param dataPublicacao A data que a obra foi publicada.
      * @param autor O autor da obra.
      * @param editora A editora que publicou a obra.
@@ -41,14 +69,14 @@ public class Obra {
         this.dataPublicacao = dataPublicacao;
         this.autor = autor;
         this.editora = editora;
-        id = auxId;         // toda vez que um objeto livro ? construido o id atual vai ser diferente do anterior em 1
-        auxId ++;           // aumenta o valor do proximo id em 1
+        id = auxId;        
+        auxId ++;           
     }
     
     
     /**
-     * Obt?m o t?tulo da obra.
-     * @return Retorna o t?tulo da obra.
+     * Obtem o titulo da obra.
+     * @return Retorna o titulo da obra.
      */
     public String getTitulo() {
         return titulo;
@@ -56,8 +84,8 @@ public class Obra {
     
     
     /**
-     * Define o t?tulo da obra.
-     * @param titulo O t?tulo da obra.
+     * Define o titulo da obra.
+     * @param titulo O titulo da obra.
      */
     public void setTitulo(String titulo) {
         this.titulo = titulo;
@@ -65,7 +93,7 @@ public class Obra {
     
     
     /**
-     * Obt?m o idioma da obra.
+     * Obtem o idioma da obra.
      * @return Retorna o idioma da obra.
      */
     public String getIdioma() {
@@ -83,7 +111,7 @@ public class Obra {
     
     
     /**
-     * Obt?m o id da obra.
+     * Obtem o id da obra.
      * @return Retorna o id da obra.
      */
     public int getId() {
@@ -168,4 +196,34 @@ public class Obra {
     public void setInfosObras(String infosObras) {
         this.infosObras = infosObras;
     }
+
+    public Autor getAutor() {
+        return autor;
+    }
+
+    public Editora getEditora() {
+        return editora;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setAutor(Autor autor) {
+        this.autor = autor;
+    }
+
+    public void setEditora(Editora editora) {
+        this.editora = editora;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+    public void mostrar(){
+        String resultado;
+        resultado = infosObras + "" + titulo + "" + idioma + "" + qntdPaginas + "" + faixaEtaria + "" + dataPublicacao + "" + autor.getNome() + "" + editora.getNome() + "" + tipo; 
+        System.out.println(resultado);
+    }
+        
 }

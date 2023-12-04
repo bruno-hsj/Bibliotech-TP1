@@ -227,7 +227,6 @@ public abstract class BancoDeDados {
         Path caminhoArquivo = BancoDeDados.achaCaminho(diretorio, arquivo);
         if (idx != -1){
             try{
-                System.out.println(idx);
                 List<String> linhas = Files.readAllLines(caminhoArquivo);
                 linhas.set(index, novoTexto);
                 Files.write(caminhoArquivo, linhas);

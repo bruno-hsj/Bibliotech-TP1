@@ -4,23 +4,26 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import projeto.Autor;
+import projeto.BancoDeDados;
 import projeto.Editora;
 import projeto.Livro;
 import projeto.Obra;
 import projeto.Quadrinho;
 import projeto.Revista;
-import static telas.CadastroAutorEditora.listaAutores;
-import static telas.CadastroAutorEditora.listaEditoras;
+import static telas.MainMenu.listaAutores;
+import static telas.MainMenu.listaEditoras;
+import static telas.MainMenu.listaObras;
 
 
 public class EstoqueAdm extends javax.swing.JFrame {
     
-    static ArrayList<Obra> listaObras;
+    private String linhaAntiga;
+    private String nomeAntigo;
     static ArrayList<String> tiposObras;
     static ArrayList<String> autoresSelecionados;
     static ArrayList<String> editorasSelecionadas;
     static ArrayList<String> informacoes;
-    static ArrayList<Integer> estoque;
+    //static ArrayList<Integer> estoque;
     
     String botao;
     
@@ -44,9 +47,8 @@ public class EstoqueAdm extends javax.swing.JFrame {
         // ArrayLists
         autoresSelecionados = new ArrayList();
         editorasSelecionadas = new ArrayList();
-        listaObras = new ArrayList();
         tiposObras = new ArrayList();
-        estoque = new ArrayList();
+        //estoque = new ArrayList();
         informacoes = new ArrayList();
         
         // Botoes
@@ -55,7 +57,7 @@ public class EstoqueAdm extends javax.swing.JFrame {
         btnEditarLivro.setEnabled(false);
         btnCancelar.setEnabled(false);
         btnExcluirLivro.setEnabled(false);
-        spnIncrementaEstoque.setEnabled(false);
+        //spnIncrementaEstoque.setEnabled(false);
         btnPesquisarLivro.setEnabled(false);
         btnBuscarLivro.setEnabled(false);
         
@@ -79,15 +81,15 @@ public class EstoqueAdm extends javax.swing.JFrame {
         
         carregaAutoresComboBox();
         carregaEditorasComboBox();
-        
+        carregaTabelaObras();
     }
 
     public void carregaTabelaObras() {
-        DefaultTableModel modelo = new DefaultTableModel(new Object[] {"Tipo", "Titulo", "Infos", "Idioma", "Paginas", "FaixaEtaria", "Publicacao", "Autor", "Editora", "qtdEstoque"}, 0);
+        DefaultTableModel modelo = new DefaultTableModel(new Object[] {"Tipo", "Titulo", "Infos", "Idioma", "Paginas", "FaixaEtaria", "Publicacao", "Autor", "Editora"}, 0);
         
-        for(int i = 0; i < listaObras.size();i++) {         
-            Object linha[] = new Object[] {tiposObras.get(i), listaObras.get(i).getTitulo(), informacoes.get(i), listaObras.get(i).getIdioma(), listaObras.get(i).getQntdPaginas(), 
-            listaObras.get(i).getFaixaEtaria(), listaObras.get(i).getDataPublicacao(), autoresSelecionados.get(i), editorasSelecionadas.get(i), estoque.get(i)};
+        for(int i = 0; i < listaObras.size();i++) {        
+            Object linha[] = new Object[] {listaObras.get(i).tipo, listaObras.get(i).getTitulo(), listaObras.get(i).getInfosObras(), listaObras.get(i).getIdioma(), listaObras.get(i).getQntdPaginas(), 
+            listaObras.get(i).getFaixaEtaria(), listaObras.get(i).getDataPublicacao(), listaObras.get(i).getAutor().getNome(), listaObras.get(i).getEditora().getNome()};
             
             
             modelo.addRow(linha);
@@ -104,7 +106,7 @@ public class EstoqueAdm extends javax.swing.JFrame {
         tblEstoque.getColumnModel().getColumn(6).setPreferredWidth(20);
         tblEstoque.getColumnModel().getColumn(7).setPreferredWidth(50);
         tblEstoque.getColumnModel().getColumn(8).setPreferredWidth(50);
-        tblEstoque.getColumnModel().getColumn(9).setPreferredWidth(20);
+        //tblEstoque.getColumnModel().getColumn(9).setPreferredWidth(20);
         
     }
   
@@ -112,6 +114,7 @@ public class EstoqueAdm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        bgGrupo = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         titulo = new javax.swing.JLabel();
         tblInfosEstoque = new javax.swing.JScrollPane();
@@ -135,19 +138,18 @@ public class EstoqueAdm extends javax.swing.JFrame {
         btnBuscarLivro = new javax.swing.JButton();
         btnPesquisarLivro = new javax.swing.JButton();
         btnSair = new javax.swing.JButton();
-        txtDataPublicacao = new javax.swing.JTextField();
         txtFaixaEtaria = new javax.swing.JTextField();
-        spnIncrementaEstoque = new javax.swing.JSpinner();
         dropAutor = new javax.swing.JComboBox<>();
         dropEditora = new javax.swing.JComboBox<>();
-        checkQuadrinho = new javax.swing.JCheckBox();
-        checkRevista = new javax.swing.JCheckBox();
-        checkLivro = new javax.swing.JCheckBox();
         labelAddAutor = new javax.swing.JLabel();
         labelAddEditora = new javax.swing.JLabel();
         labelTipoObra = new javax.swing.JLabel();
-        labelTipoObra1 = new javax.swing.JLabel();
         labelAddEditora1 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        txtDataPublicacao = new javax.swing.JFormattedTextField();
+        checkLivro = new javax.swing.JRadioButton();
+        checkRevista = new javax.swing.JRadioButton();
+        checkQuadrinho = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("BiblioTech | Gerenciamento de Estoque");
@@ -163,20 +165,20 @@ public class EstoqueAdm extends javax.swing.JFrame {
 
         tblEstoque.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Tipo Obra", "Titulo", "Informações Obra", "Idioma", "Páginas", "Faixa Etária", "Publicação", "Autor", "Editora", "Quantidade"
+                "Tipo Obra", "Titulo", "Infos", "Idioma", "Páginas", "Faixa Etária", "Publicação", "Autor", "Editora"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Float.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Float.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, true
+                false, false, false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -311,28 +313,12 @@ public class EstoqueAdm extends javax.swing.JFrame {
             }
         });
 
-        txtDataPublicacao.setToolTipText("Forneça a data de publicacao");
-        txtDataPublicacao.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtDataPublicacaoActionPerformed(evt);
-            }
-        });
-
         txtFaixaEtaria.setToolTipText("Forneça a faixa etaria");
         txtFaixaEtaria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtFaixaEtariaActionPerformed(evt);
             }
         });
-
-        checkQuadrinho.setForeground(new java.awt.Color(255, 255, 255));
-        checkQuadrinho.setText("Quadrinho");
-
-        checkRevista.setForeground(new java.awt.Color(255, 255, 255));
-        checkRevista.setText("Revista");
-
-        checkLivro.setForeground(new java.awt.Color(255, 255, 255));
-        checkLivro.setText("Livro");
 
         labelAddAutor.setForeground(new java.awt.Color(255, 255, 255));
         labelAddAutor.setText("Adicionar Autor");
@@ -343,11 +329,30 @@ public class EstoqueAdm extends javax.swing.JFrame {
         labelTipoObra.setForeground(new java.awt.Color(255, 255, 255));
         labelTipoObra.setText("Tipo de Obra");
 
-        labelTipoObra1.setForeground(new java.awt.Color(255, 255, 255));
-        labelTipoObra1.setText("Quantidade no Estoque");
-
         labelAddEditora1.setForeground(new java.awt.Color(255, 255, 255));
         labelAddEditora1.setText("Realizar pesquisa pelo título da obra");
+
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("NÃO UTILIZE ACENTOS!!!");
+
+        try {
+            txtDataPublicacao.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        txtDataPublicacao.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+
+        bgGrupo.add(checkLivro);
+        checkLivro.setForeground(new java.awt.Color(255, 255, 255));
+        checkLivro.setText("Livro");
+
+        bgGrupo.add(checkRevista);
+        checkRevista.setForeground(new java.awt.Color(255, 255, 255));
+        checkRevista.setText("Revista");
+
+        bgGrupo.add(checkQuadrinho);
+        checkQuadrinho.setForeground(new java.awt.Color(255, 255, 255));
+        checkQuadrinho.setText("Quadrinho");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -368,34 +373,37 @@ public class EstoqueAdm extends javax.swing.JFrame {
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addComponent(labelQtdPaginas, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
+                                            .addComponent(labelQtdPaginas, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 128, Short.MAX_VALUE)
                                             .addComponent(txtQtdPaginas, javax.swing.GroupLayout.Alignment.LEADING))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(txtDataPublicacao)
                                             .addComponent(labelIdade)
                                             .addComponent(txtFaixaEtaria, javax.swing.GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE)
-                                            .addComponent(labelDataPublicacao)
-                                            .addComponent(txtDataPublicacao, javax.swing.GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE)))
+                                            .addComponent(labelDataPublicacao))
+                                        .addGap(21, 21, 21))
                                     .addComponent(labelAddAutor)
                                     .addComponent(labelAddEditora)
                                     .addComponent(dropAutor, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(dropEditora, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(89, 89, 89)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                            .addGap(50, 50, 50)
-                                            .addComponent(btnExcluirLivro))
-                                        .addComponent(labelTipoObra, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(checkLivro, javax.swing.GroupLayout.Alignment.LEADING))
-                                    .addComponent(checkQuadrinho)
-                                    .addComponent(checkRevista)
-                                    .addComponent(labelTipoObra1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(spnIncrementaEstoque)))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(118, 118, 118)
+                                        .addComponent(btnExcluirLivro))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(68, 68, 68)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(checkLivro)
+                                            .addComponent(labelTipoObra)
+                                            .addComponent(checkRevista)
+                                            .addComponent(checkQuadrinho)))))
                             .addComponent(labelTitulo)
                             .addComponent(labelGenero)
                             .addComponent(labelIdioma)
-                            .addComponent(titulo)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(titulo)
+                                .addGap(32, 32, 32)
+                                .addComponent(jLabel1))
                             .addComponent(btnSair, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(214, 214, 214)
@@ -410,7 +418,7 @@ public class EstoqueAdm extends javax.swing.JFrame {
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(btnBuscarLivro, javax.swing.GroupLayout.DEFAULT_SIZE, 417, Short.MAX_VALUE)
                                     .addComponent(txtCampoPesquisa))))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 13, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(tblInfosEstoque, javax.swing.GroupLayout.DEFAULT_SIZE, 865, Short.MAX_VALUE))
         );
@@ -418,7 +426,9 @@ public class EstoqueAdm extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(titulo)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(titulo)
+                    .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(labelTitulo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -440,22 +450,17 @@ public class EstoqueAdm extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txtQtdPaginas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(62, 62, 62)
-                                .addComponent(labelIdade)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtFaixaEtaria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(labelDataPublicacao)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtDataPublicacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(txtDataPublicacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(16, 16, 16)
+                                .addComponent(labelIdade)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtFaixaEtaria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(labelAddAutor)
-                            .addComponent(labelTipoObra1))
+                        .addComponent(labelAddAutor)
                         .addGap(8, 8, 8)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(dropAutor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(spnIncrementaEstoque, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(dropAutor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(labelAddEditora)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -471,12 +476,12 @@ public class EstoqueAdm extends javax.swing.JFrame {
                         .addComponent(labelAddEditora1))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(labelTipoObra)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(checkLivro)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(checkQuadrinho)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(12, 12, 12)
                         .addComponent(checkRevista)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(checkQuadrinho)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -499,7 +504,7 @@ public class EstoqueAdm extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -532,7 +537,7 @@ public class EstoqueAdm extends javax.swing.JFrame {
         btnCancelar.setEnabled(true);
         btnExcluirLivro.setEnabled(false);
         
-        spnIncrementaEstoque.setEnabled(true);
+        //spnIncrementaEstoque.setEnabled(true);
         
         btnPesquisarLivro.setEnabled(false);
         btnBuscarLivro.setEnabled(false);
@@ -572,52 +577,76 @@ public class EstoqueAdm extends javax.swing.JFrame {
             int paginasObra = Integer.parseInt(txtQtdPaginas.getText());
             int faixaEtariaObra = Integer.parseInt(txtFaixaEtaria.getText());
             String dataPublicacaoObra = txtDataPublicacao.getText();
-            int qtdLivrosEstoque = (int) spnIncrementaEstoque.getValue();
+            //int qtdLivrosEstoque = (int) spnIncrementaEstoque.getValue();
             
             Autor autorDaObra = listaAutores.get(selectedItemAutor);
             Editora editoraDaObra = listaEditoras.get(selectedItemEditora);
             
-            if(botao.equals("novo")) {
+            String linh = informacoesObra + "|" + tituloObra + "|" + idiomaObra + "|" + paginasObra + "|" + faixaEtariaObra + "|" + dataPublicacaoObra + "|" + autorDaObra.getNome() + "|" + editoraDaObra.getNome() + "|";
+            if (!tituloObra.equals(nomeAntigo) && BancoDeDados.in(tituloObra, "Bibliotecario", "NomeObras")){
+                JOptionPane.showMessageDialog(null, "Já existe obra com mesmo nome. Tente novamente!", "ERRO", JOptionPane.ERROR_MESSAGE);
+                txtTitulo.requestFocus();
+            }
+            else if(botao.equals("novo")) {
                 if(checkLivro.isSelected()) {
                     Livro livro = new Livro(informacoesObra, tituloObra, idiomaObra, paginasObra, faixaEtariaObra, dataPublicacaoObra, autorDaObra, editoraDaObra);
                     listaObras.add(livro);
                     tiposObras.add("Livro");
+                    linh += "Livro";
+                    BancoDeDados.escrever(linh, "Bibliotecario", "Obras");
+                    BancoDeDados.escrever(tituloObra, "Bibliotecario", "NomeObras");
+                    JOptionPane.showMessageDialog(null, "Obra cadastrada com sucesso!", "Mensagem", JOptionPane.INFORMATION_MESSAGE);
                     
                 } else if(checkRevista.isSelected()) {
                     Revista revista = new Revista(informacoesObra, tituloObra, idiomaObra, paginasObra, faixaEtariaObra, dataPublicacaoObra, autorDaObra, editoraDaObra);
                     listaObras.add(revista);
                     tiposObras.add("Revista");
+                    linh += "Quadrinho";
+                    BancoDeDados.escrever(linh, "Bibliotecario", "Obras");
+                    BancoDeDados.escrever(tituloObra, "Bibliotecario", "NomeObras");
+                    JOptionPane.showMessageDialog(null, "Obra cadastrada com sucesso!", "Mensagem", JOptionPane.INFORMATION_MESSAGE);
                     
                 } else if(checkQuadrinho.isSelected()) {
                     Quadrinho quadrinho = new Quadrinho(informacoesObra, tituloObra, idiomaObra, paginasObra, faixaEtariaObra, dataPublicacaoObra, autorDaObra, editoraDaObra);
                     listaObras.add(quadrinho);
                     tiposObras.add("Quadrinho");
+                    linh += "Quadrinho";
+                    BancoDeDados.escrever(linh, "Bibliotecario", "Obras");
+                    BancoDeDados.escrever(tituloObra, "Bibliotecario", "NomeObras");
+                    JOptionPane.showMessageDialog(null, "Obra cadastrada com sucesso!", "Mensagem", JOptionPane.INFORMATION_MESSAGE);
                     
                 } else {
                     JOptionPane.showMessageDialog(null, "Escolha uma opção!", "Mensagem", JOptionPane.PLAIN_MESSAGE); 
-                }
-                
-                //Obra obra = new Obra(tituloObra, idiomaObra, paginasObra, faixaEtariaObra, dataPublicacaoObra, autorDaObra, editoraDaObra);
-                autoresSelecionados.add(autorDaObra.getNome());
-                editorasSelecionadas.add(editoraDaObra.getNome());
-                estoque.add(qtdLivrosEstoque);
-                informacoes.add(informacoesObra);
 
-                JOptionPane.showMessageDialog(null, "Obra cadastrada com sucesso!", "Mensagem", JOptionPane.INFORMATION_MESSAGE);
+                }
                 
             } else if(botao.equals("editar")) {
                 int index = tblEstoque.getSelectedRow();
                 
-                listaObras.get(index).setTitulo(tituloObra);
-                listaObras.get(index).setInfosObras(informacoesObra);
-                listaObras.get(index).setIdioma(idiomaObra);
-                listaObras.get(index).setQntdPaginas(paginasObra);
-                listaObras.get(index).setFaixaEtaria(faixaEtariaObra);
-                listaObras.get(index).setDataPublicacao(dataPublicacaoObra);
+                String btn = "";
+                if (checkLivro.isSelected()){btn = "Livro";}
+                else if (checkRevista.isSelected()){btn = "Revista";}
+                else if (checkQuadrinho.isSelected()){btn = "Quadrinho";}
                 
-                
-                
-                JOptionPane.showMessageDialog(null, "Dados da editora editados com sucesso!", "Mensagem", JOptionPane.INFORMATION_MESSAGE);
+                if (!btn.equals("")){
+                    listaObras.get(index).setTitulo(tituloObra);
+                    listaObras.get(index).setInfosObras(informacoesObra);
+                    listaObras.get(index).setIdioma(idiomaObra);
+                    listaObras.get(index).setQntdPaginas(paginasObra);
+                    listaObras.get(index).setFaixaEtaria(faixaEtariaObra);
+                    listaObras.get(index).setDataPublicacao(dataPublicacaoObra);
+                    listaObras.get(index).setTipo(btn);
+                    listaObras.get(index).setAutor(autorDaObra);
+                    listaObras.get(index).setEditora(editoraDaObra);
+
+                    BancoDeDados.editaLinha(linhaAntiga, linh, "Bibliotecario", "Obras");
+                    BancoDeDados.editaLinha(nomeAntigo, tituloObra, "Bibliotecario", "NomeObras");
+                    JOptionPane.showMessageDialog(null, "Dados do livro editados com sucesso!", "Mensagem", JOptionPane.INFORMATION_MESSAGE);
+                }
+                else{
+                    JOptionPane.showMessageDialog(null, "Escolha uma opção!", "Mensagem", JOptionPane.PLAIN_MESSAGE); 
+                }
+                    
 
             }
             
@@ -628,7 +657,7 @@ public class EstoqueAdm extends javax.swing.JFrame {
             btnEditarLivro.setEnabled(false);
             btnCancelar.setEnabled(false);
             btnExcluirLivro.setEnabled(false);
-            spnIncrementaEstoque.setEnabled(false);
+            //spnIncrementaEstoque.setEnabled(false);
             btnPesquisarLivro.setEnabled(true);
             btnBuscarLivro.setEnabled(false);
             txtCampoPesquisa.setEnabled(false);
@@ -657,7 +686,7 @@ public class EstoqueAdm extends javax.swing.JFrame {
             txtQtdPaginas.setText("");
             txtFaixaEtaria.setText("");
             txtDataPublicacao.setText("");
-            spnIncrementaEstoque.setValue(0);
+            //spnIncrementaEstoque.setValue(0);
             
         }
         
@@ -671,7 +700,7 @@ public class EstoqueAdm extends javax.swing.JFrame {
         btnEditarLivro.setEnabled(false);
         btnCancelar.setEnabled(false);
         btnExcluirLivro.setEnabled(false);
-        spnIncrementaEstoque.setEnabled(false);
+        //spnIncrementaEstoque.setEnabled(false);
         btnPesquisarLivro.setEnabled(false);
         btnBuscarLivro.setEnabled(false);
         txtCampoPesquisa.setEnabled(false);
@@ -700,7 +729,7 @@ public class EstoqueAdm extends javax.swing.JFrame {
         txtQtdPaginas.setText("");
         txtFaixaEtaria.setText("");
         txtDataPublicacao.setText("");
-        spnIncrementaEstoque.setValue(0);
+        //spnIncrementaEstoque.setValue(0);
         
         
     }//GEN-LAST:event_btnCancelarActionPerformed
@@ -713,7 +742,7 @@ public class EstoqueAdm extends javax.swing.JFrame {
         btnEditarLivro.setEnabled(false);
         btnCancelar.setEnabled(true);
         btnExcluirLivro.setEnabled(false);
-        spnIncrementaEstoque.setEnabled(true);
+        //spnIncrementaEstoque.setEnabled(true);
         btnPesquisarLivro.setEnabled(false);
         btnBuscarLivro.setEnabled(false);
         txtCampoPesquisa.setEnabled(false);
@@ -735,14 +764,53 @@ public class EstoqueAdm extends javax.swing.JFrame {
         txtQtdPaginas.setEnabled(true);
         txtFaixaEtaria.setEnabled(true);
         txtDataPublicacao.setEnabled(true);
-
+        
+        int selectedItemAutor = dropAutor.getSelectedIndex();
+        int selectedItemEditora = dropEditora.getSelectedIndex();
+        Autor autorDaObra = listaAutores.get(selectedItemAutor);
+        Editora editoraDaObra = listaEditoras.get(selectedItemEditora);
+            
+        String tituloObra = txtTitulo.getText();
+        String informacoesObra = txtInfos.getText();
+        String idiomaObra = txtIdioma.getText();
+        int paginasObra = Integer.parseInt(txtQtdPaginas.getText());
+        int faixaEtariaObra = Integer.parseInt(txtFaixaEtaria.getText());
+        String dataPublicacaoObra = txtDataPublicacao.getText();
+        String btn = "";
+        
+        if (checkLivro.isSelected()){btn = "Livro";}
+        else if (checkRevista.isSelected()){btn = "Revista";}
+        else {btn = "Quadrinho";}
+        
+        linhaAntiga = informacoesObra + "|" + tituloObra + "|" + idiomaObra + "|" + paginasObra + "|" + faixaEtariaObra + "|" + dataPublicacaoObra + "|" + autorDaObra.getNome() + "|" + editoraDaObra.getNome() + "|" + btn;
+        nomeAntigo = tituloObra;
     }//GEN-LAST:event_btnEditarLivroActionPerformed
 
     private void btnExcluirLivroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirLivroActionPerformed
         int indexEE = tblEstoque.getSelectedRow();
         
+        int selectedItemAutor = dropAutor.getSelectedIndex();
+        int selectedItemEditora = dropEditora.getSelectedIndex();
+        Autor autorDaObra = listaAutores.get(selectedItemAutor);
+        Editora editoraDaObra = listaEditoras.get(selectedItemEditora);
+            
+        String tituloObra = txtTitulo.getText();
+        String informacoesObra = txtInfos.getText();
+        String idiomaObra = txtIdioma.getText();
+        int paginasObra = Integer.parseInt(txtQtdPaginas.getText());
+        int faixaEtariaObra = Integer.parseInt(txtFaixaEtaria.getText());
+        String dataPublicacaoObra = txtDataPublicacao.getText();
+        
+        String btn = "";    
+        if (checkLivro.isSelected()){btn = "Livro";}
+        else if (checkRevista.isSelected()){btn = "Revista";}
+        else {btn = "Quadrinho";}
+        
         if(indexEE >= 0 && indexEE < listaEditoras.size()) {
-            listaObras.remove(indexEE); 
+            String linha = informacoesObra + "|" + tituloObra + "|" + idiomaObra + "|" + paginasObra + "|" + faixaEtariaObra + "|" + dataPublicacaoObra + "|" + autorDaObra.getNome() + "|" + editoraDaObra.getNome() + btn;
+            BancoDeDados.excluiLinha(linha, "Bibliotecario", "Obras");
+            BancoDeDados.excluiLinha(tituloObra, "Bibliotecario", "NomeObras");
+            listaObras.remove(indexEE);
         }
         
         carregaTabelaObras();
@@ -754,7 +822,7 @@ public class EstoqueAdm extends javax.swing.JFrame {
         txtQtdPaginas.setText("");
         txtFaixaEtaria.setText("");
         txtDataPublicacao.setText("");
-        spnIncrementaEstoque.setValue(0);
+        //spnIncrementaEstoque.setValue(0);
         
         // Botoes
         btnNovoLivro.setEnabled(true);
@@ -762,7 +830,7 @@ public class EstoqueAdm extends javax.swing.JFrame {
         btnEditarLivro.setEnabled(false);
         btnCancelar.setEnabled(false);
         btnExcluirLivro.setEnabled(false);
-        spnIncrementaEstoque.setEnabled(false);
+        //spnIncrementaEstoque.setEnabled(false);
         btnPesquisarLivro.setEnabled(false);
         btnBuscarLivro.setEnabled(false);
         txtCampoPesquisa.setEnabled(false);
@@ -786,10 +854,6 @@ public class EstoqueAdm extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_btnExcluirLivroActionPerformed
-
-    private void txtDataPublicacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDataPublicacaoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtDataPublicacaoActionPerformed
 
     private void txtFaixaEtariaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFaixaEtariaActionPerformed
         // TODO add your handling code here:
@@ -815,7 +879,7 @@ public class EstoqueAdm extends javax.swing.JFrame {
         txtQtdPaginas.setText("");
         txtFaixaEtaria.setText("");
         txtDataPublicacao.setText("");
-        spnIncrementaEstoque.setValue(0);
+        //spnIncrementaEstoque.setValue(0);
 
          // Botoes
         btnNovoLivro.setEnabled(false);
@@ -823,7 +887,7 @@ public class EstoqueAdm extends javax.swing.JFrame {
         btnEditarLivro.setEnabled(false);
         btnCancelar.setEnabled(true);
         btnExcluirLivro.setEnabled(false);
-        spnIncrementaEstoque.setEnabled(false);
+        //spnIncrementaEstoque.setEnabled(false);
         btnPesquisarLivro.setEnabled(false);
         btnBuscarLivro.setEnabled(true);
         txtCampoPesquisa.setEnabled(true);
@@ -882,7 +946,7 @@ public class EstoqueAdm extends javax.swing.JFrame {
                 txtQtdPaginas.setText("");
                 txtFaixaEtaria.setText("");
                 txtDataPublicacao.setText("");
-                spnIncrementaEstoque.setValue(0);
+                //spnIncrementaEstoque.setValue(0);
             } else {    
                 txtTitulo.setText(titulo);
                 txtInfos.setText(information);
@@ -905,12 +969,12 @@ public class EstoqueAdm extends javax.swing.JFrame {
             Obra ob = listaObras.get(i);
             
             txtTitulo.setText(ob.getTitulo());
-            txtInfos.setText(informacoes.get(i));
+            txtInfos.setText(ob.getInfosObras());
             txtIdioma.setText(ob.getIdioma());
             txtQtdPaginas.setText(Integer.toString(ob.getQntdPaginas()));
             txtFaixaEtaria.setText(Integer.toString(ob.getFaixaEtaria()));
             txtDataPublicacao.setText(ob.getDataPublicacao());
-            spnIncrementaEstoque.setValue(estoque.get(i));
+            //spnIncrementaEstoque.setValue(estoque.get(i));
         }
         
         btnNovoLivro.setEnabled(false);
@@ -918,7 +982,7 @@ public class EstoqueAdm extends javax.swing.JFrame {
         btnEditarLivro.setEnabled(true);
         btnCancelar.setEnabled(true);
         btnExcluirLivro.setEnabled(true);
-        spnIncrementaEstoque.setEnabled(false);
+        //spnIncrementaEstoque.setEnabled(false);
         btnPesquisarLivro.setEnabled(false);
         btnBuscarLivro.setEnabled(false);
         txtCampoPesquisa.setEnabled(false);
@@ -959,6 +1023,7 @@ public class EstoqueAdm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup bgGrupo;
     private javax.swing.JButton btnBuscarLivro;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnEditarLivro;
@@ -967,11 +1032,12 @@ public class EstoqueAdm extends javax.swing.JFrame {
     private javax.swing.JButton btnPesquisarLivro;
     private javax.swing.JButton btnSair;
     private javax.swing.JButton btnSalvarLivro;
-    private javax.swing.JCheckBox checkLivro;
-    private javax.swing.JCheckBox checkQuadrinho;
-    private javax.swing.JCheckBox checkRevista;
+    private javax.swing.JRadioButton checkLivro;
+    private javax.swing.JRadioButton checkQuadrinho;
+    private javax.swing.JRadioButton checkRevista;
     private javax.swing.JComboBox<String> dropAutor;
     private javax.swing.JComboBox<String> dropEditora;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel labelAddAutor;
     private javax.swing.JLabel labelAddEditora;
@@ -982,14 +1048,12 @@ public class EstoqueAdm extends javax.swing.JFrame {
     private javax.swing.JLabel labelIdioma;
     private javax.swing.JLabel labelQtdPaginas;
     private javax.swing.JLabel labelTipoObra;
-    private javax.swing.JLabel labelTipoObra1;
     private javax.swing.JLabel labelTitulo;
-    private javax.swing.JSpinner spnIncrementaEstoque;
     private javax.swing.JTable tblEstoque;
     private javax.swing.JScrollPane tblInfosEstoque;
     private javax.swing.JLabel titulo;
     private javax.swing.JTextField txtCampoPesquisa;
-    private javax.swing.JTextField txtDataPublicacao;
+    private javax.swing.JFormattedTextField txtDataPublicacao;
     private javax.swing.JTextField txtFaixaEtaria;
     private javax.swing.JTextField txtIdioma;
     private javax.swing.JTextField txtInfos;

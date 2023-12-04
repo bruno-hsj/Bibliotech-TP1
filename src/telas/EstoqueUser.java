@@ -14,7 +14,7 @@ import projeto.Obra;
 import projeto.Quadrinho;
 import projeto.Revista;
 import static telas.EstoqueAdm.informacoes;
-import static telas.EstoqueAdm.listaObras;
+import static telas.MainMenu.listaObras;
 
 /**
  *
@@ -32,7 +32,7 @@ public class EstoqueUser extends javax.swing.JFrame {
      public String buscaAutor;
      public String buscaEditora;
      
-     ArrayList<Obra> listaObras = new ArrayList<Obra>();
+     //ArrayList<Obra> listaObras = new ArrayList<Obra>();
      ArrayList<Livro> livros = new ArrayList<Livro>();
      ArrayList<Quadrinho> quadrinhos = new ArrayList<Quadrinho>();
      ArrayList<Revista> revistas = new ArrayList<Revista>();
@@ -57,12 +57,19 @@ public class EstoqueUser extends javax.swing.JFrame {
     }
 
     public void carregaTabelaUser() {
-        DefaultTableModel modelo = new DefaultTableModel(new Object[] {"Título", "Gênero", "Tipo", "Páginas", "FaixaEtaria", "Publicacao", "Autor", "Editora", "qtdEstoque"}, 0);
+        DefaultTableModel modelo = new DefaultTableModel(new Object[] {"Título", "Infos", "Tipo", "Páginas", "FaixaEtaria", "Publicacao", "Autor", "Editora", "qtdEstoque"}, 0);
         
         for(int i = 0; i < listaObras.size(); i++){
-            Object linha [] = new Object[] {listaObras.get(i).getTitulo(), listaObras.get(i).getGenero(), tipoObras.get(i), listaObras.get(i).getQntdPaginas(),
+            /*
+            Object linha [] = new Object[] {listaObras.get(i).getTitulo(), listaObras.get(i).getInfosObras(), tipoObras.get(i), listaObras.get(i).getQntdPaginas(),
             listaObras.get(i).getFaixaEtaria(), listaObras.get(i).getDataPublicacao, listaObras.get(i).getAutor().getNome(), listaObras.get(i).getEditora().getNome(),
             listaObras.get(i).getqtdLivrosEstoque()};
+            */
+            
+            Object linha[] = new Object[] {listaObras.get(i).tipo, listaObras.get(i).getTitulo(), listaObras.get(i).getInfosObras(), listaObras.get(i).getIdioma(), listaObras.get(i).getQntdPaginas(), 
+            listaObras.get(i).getFaixaEtaria(), listaObras.get(i).getDataPublicacao(), listaObras.get(i).getAutor().getNome(), listaObras.get(i).getEditora().getNome()};
+            
+            
             modelo.addRow(linha);
         }
         
@@ -400,7 +407,7 @@ public class EstoqueUser extends javax.swing.JFrame {
                 
             }
            
-
+    
 
     }//GEN-LAST:event_btnBuscarLivroActionPerformed
 

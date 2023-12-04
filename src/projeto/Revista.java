@@ -6,7 +6,7 @@ package projeto;
  */
 public class Revista extends Obra{
     private String periodoPublicacao;
-    
+    private static String tipo = "Revista";
     /**
      * Cria um objeto do tipo Revista com nenhum atributo inicializado.
      */
@@ -31,7 +31,7 @@ public class Revista extends Obra{
     }
     
     /**
-     * Obt?m a frequ?ncia de publica??o da revista.
+     * Obtem a frequencia de publicacao da revista.
      * @return Retorna a frequ?ncia de publica??o da revista.
      */
     public String getPeriodoPublicacao() {

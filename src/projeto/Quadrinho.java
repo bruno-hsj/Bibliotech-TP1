@@ -7,6 +7,7 @@ package projeto;
  */
 public class Quadrinho extends Obra{
     private String ilustrador;
+    private static String tipo = "Quadrinho";
     
     /**
      * Cria um objeto do tipo Quadrinho com nenhum atributo inicializado.
