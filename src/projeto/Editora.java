@@ -11,6 +11,8 @@ public class Editora {
     private String paisOrigem;
     private String anoFundacao;
     private ArrayList<Obra> obras = new ArrayList();
+    private int id;
+    private static int auxId;
     
     /**
      * Constrói um objeto Editora com nenhum atributo inicializado.
@@ -29,6 +31,8 @@ public class Editora {
         this.nome = nome;
         this.paisOrigem = paisOrigem;
         this.anoFundacao = anoFundacao;
+        id = auxId;         // toda vez que um objeto livro é construido o id atual vai ser diferente do anterior em 1
+        auxId ++;           // aumenta o valor do proximo id em 1
     }
     
     /**
@@ -101,4 +105,14 @@ public class Editora {
     public void novaObra(Obra obra) {
         obras.add(obra);
     }
+    
+    
+    /**
+     * Obtém o id da editora.
+     * @return Retorna o id da editora.
+     */
+    public int getId() {
+        return id;
+    }
+    
 }

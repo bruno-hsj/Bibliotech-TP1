@@ -2,10 +2,13 @@ package telas;
 
 import javax.swing.JOptionPane;
 import java.util.ArrayList;
+import projeto.Autor;
 import projeto.BancoDeDados;
 import projeto.Bibliotecario;
 import projeto.Cliente;
+import projeto.Editora;
 import projeto.Emprestimo;
+import projeto.Obra;
 
 public class MainMenu extends javax.swing.JFrame {
 
@@ -13,6 +16,9 @@ public class MainMenu extends javax.swing.JFrame {
     public String linha;
     public static ArrayList<Emprestimo> listaEmprestimos = new ArrayList<>();
     public static ArrayList<Cliente> listaClientes = new ArrayList<>();
+    public static ArrayList<Obra> listaObras = new ArrayList<>();
+    public static ArrayList<Editora> listaEditoras = new ArrayList<>();
+    public static ArrayList<Autor> listaAutores = new ArrayList<>();
             
     public MainMenu() {
         initComponents();
@@ -31,7 +37,7 @@ public class MainMenu extends javax.swing.JFrame {
         txtSenha = new javax.swing.JPasswordField();
         btnEntrar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        cbCheckAdm = new javax.swing.JCheckBox();
+        cbCheckAdm = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("BiblioTech | Login");
@@ -83,12 +89,7 @@ public class MainMenu extends javax.swing.JFrame {
         });
 
         cbCheckAdm.setForeground(new java.awt.Color(255, 255, 255));
-        cbCheckAdm.setText("Sou bibliotecario");
-        cbCheckAdm.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbCheckAdmActionPerformed(evt);
-            }
-        });
+        cbCheckAdm.setText("Sou Bibliotecário");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -104,14 +105,14 @@ public class MainMenu extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(62, 62, 62)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cbCheckAdm)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(labelLogin)
                                 .addComponent(labelSenha)
                                 .addComponent(txtSenha)
                                 .addComponent(txtLogin)
                                 .addComponent(btnEntrar, javax.swing.GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE))
-                            .addComponent(jLabel1))))
+                            .addComponent(jLabel1)
+                            .addComponent(cbCheckAdm))))
                 .addContainerGap(67, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -130,7 +131,7 @@ public class MainMenu extends javax.swing.JFrame {
                 .addComponent(labelSenha)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(12, 12, 12)
                 .addComponent(cbCheckAdm)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -160,11 +161,14 @@ public class MainMenu extends javax.swing.JFrame {
 
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
 
-        if(txtLogin.getText().equals(Bibliotecario.getUsuario()) && txtSenha.getText().equals(Bibliotecario.getSenha()) && cbCheckAdm.isSelected()) {
+        if (cbCheckAdm.isSelected()) {
             //Verificação no IF se usuário faz parte de usuário administrador
-         
-            new AdmLogado().setVisible(true);
-            
+            if (Bibliotecario.comparaDados(txtLogin.getText(), txtSenha.getText()))
+                new AdmLogado().setVisible(true);
+            else{
+                JOptionPane.showMessageDialog(null, "Senha ou usuário inválido(s)!", "Usuário ou Senha inválidos!", JOptionPane.PLAIN_MESSAGE); 
+                txtLogin.requestFocus();
+            }
         }
         else{
            //Busca em BancoDeDados se existe User e Senha compatíveis. 
@@ -175,6 +179,7 @@ public class MainMenu extends javax.swing.JFrame {
             } else {
             //Caso não encontre usuário válido, exibir mensagem de erro.
                 JOptionPane.showMessageDialog(null, "Considere realizar o cadastro de usuário!", "Usuário ou Senha inválidos!", JOptionPane.PLAIN_MESSAGE); 
+                txtLogin.requestFocus();
 
             }    
         }
@@ -183,10 +188,6 @@ public class MainMenu extends javax.swing.JFrame {
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
        new CadastroUser().setVisible(true);
     }//GEN-LAST:event_jLabel1MouseClicked
-
-    private void cbCheckAdmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbCheckAdmActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cbCheckAdmActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -218,19 +219,13 @@ public class MainMenu extends javax.swing.JFrame {
         BancoDeDados.criarArquivo("Login");
         BancoDeDados.criarArquivo("Cadastro");
         BancoDeDados.criarArquivo("User");
-        //BancoDeDados.criarArquivo("Senha");
-        
-        BancoDeDados.criarDiretorio("Bibliotecario");
-        BancoDeDados.criarArquivo("Obras");
-        BancoDeDados.criarArquivo("LIvro");
-        BancoDeDados.criarArquivo("Autor");
-        BancoDeDados.criarArquivo("Editora");
         BancoDeDados.criarArquivo("Emprestimo");
         
         BancoDeDados.criarDiretorio("Bibliotecario");
-        BancoDeDados.criarArquivo("Livro");
+        BancoDeDados.criarArquivo("Obras");
         BancoDeDados.criarArquivo("Autor");
         BancoDeDados.criarArquivo("Editora");
+        
         
         ArrayList<String> lista = (ArrayList<String>) BancoDeDados.lerArquivo("Cliente", "Emprestimo");
         for (String i : lista){
@@ -244,6 +239,18 @@ public class MainMenu extends javax.swing.JFrame {
             listaClientes.add(new Cliente(aux[0], aux[1], aux[2], aux[3]));
         }
         
+        ArrayList<String> listaEd = (ArrayList<String>) BancoDeDados.lerArquivo("Bibliotecario", "Editora");
+        for (String sub : listaEd){
+            String[] aux  = sub.split("\\|");
+            listaEditoras.add(new Editora(aux[0], aux[1], aux[2]));
+        }
+        
+        ArrayList<String> listaA = (ArrayList<String>) BancoDeDados.lerArquivo("Bibliotecario", "Autor");
+        for (String sub : listaA){
+            String[] aux  = sub.split("\\|");
+            listaAutores.add(new Autor(aux[0], aux[1], aux[2]));
+        }
+        
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new MainMenu().setVisible(true);
@@ -253,7 +260,7 @@ public class MainMenu extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEntrar;
-    private javax.swing.JCheckBox cbCheckAdm;
+    private javax.swing.JRadioButton cbCheckAdm;
     private javax.swing.JLabel imgLivros;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
