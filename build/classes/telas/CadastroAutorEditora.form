@@ -94,7 +94,7 @@
                                   </Group>
                               </Group>
                               <Component id="txtFundacaoEditora" alignment="0" max="32767" attributes="0"/>
-                              <Component id="txtDataNascAutor" max="32767" attributes="0"/>
+                              <Component id="txtDataNascAutor" alignment="0" max="32767" attributes="0"/>
                           </Group>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
@@ -142,9 +142,9 @@
                           <Component id="txtNacionalidadeAutor" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="lblDataNascAutor" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="txtDataNascAutor" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="btnSalvarAutor" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="btnCancelarAutor" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -209,7 +209,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txtNomeAutor">
           <Properties>
-            <Property name="toolTipText" type="java.lang.String" value="Forne&#xe7;a seu usu&#xe1;rio"/>
+            <Property name="toolTipText" type="java.lang.String" value="Forne&#xe7;a o nome do autor"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtNomeAutorActionPerformed"/>
@@ -239,7 +239,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txtNacionalidadeAutor">
           <Properties>
-            <Property name="toolTipText" type="java.lang.String" value="Forne&#xe7;a seu usu&#xe1;rio"/>
+            <Property name="toolTipText" type="java.lang.String" value="Forne&#xe7;a a nacionalidade do autor"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtNacionalidadeAutorActionPerformed"/>
@@ -252,14 +252,6 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Data de Nascimento"/>
           </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="txtDataNascAutor">
-          <Properties>
-            <Property name="toolTipText" type="java.lang.String" value="Forne&#xe7;a seu usu&#xe1;rio"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtDataNascAutorActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnSalvarAutor">
           <Properties>
@@ -318,7 +310,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txtNomeEditora">
           <Properties>
-            <Property name="toolTipText" type="java.lang.String" value="Forne&#xe7;a seu usu&#xe1;rio"/>
+            <Property name="toolTipText" type="java.lang.String" value="Forne&#xe7;a o nome da editora"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtNomeEditoraActionPerformed"/>
@@ -334,7 +326,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txtOrigemEditora">
           <Properties>
-            <Property name="toolTipText" type="java.lang.String" value="Forne&#xe7;a seu usu&#xe1;rio"/>
+            <Property name="toolTipText" type="java.lang.String" value="Forne&#xe7;a o pais de origem da editora"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtOrigemEditoraActionPerformed"/>
@@ -350,7 +342,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txtFundacaoEditora">
           <Properties>
-            <Property name="toolTipText" type="java.lang.String" value="Forne&#xe7;a seu usu&#xe1;rio"/>
+            <Property name="toolTipText" type="java.lang.String" value="Forne&#xe7;a o ano de funda&#xe7;ao da editora"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtFundacaoEditoraActionPerformed"/>
@@ -501,7 +493,20 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="18" style="0"/>
             </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="N&#xc3;O UTILIZE ACENTO!!!"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JFormattedTextField" name="txtDataNascAutor">
+          <Properties>
+            <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
+              <Format format="##/##/####" subtype="-1" type="5"/>
+            </Property>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="16" style="0"/>
+            </Property>
           </Properties>
         </Component>
       </SubComponents>

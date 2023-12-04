@@ -1,2 +1,3 @@
-PoloWerner|Alemanha|2000
-Estadao|Nepal|1872
+Folha|Brasil|2001
+UOL|Canada|1970
+Coluna do Fla|Desconhecido|2019

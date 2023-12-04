@@ -15,6 +15,8 @@ public class CadastroAutorEditora extends javax.swing.JFrame {
     String botaoE;
     private String linhaAntiga;
     private String linhaAntigaE;
+    private String nomeAntigo;
+    private String nomeAntigoE;
     
     public CadastroAutorEditora() {
         initComponents();
@@ -48,7 +50,7 @@ public class CadastroAutorEditora extends javax.swing.JFrame {
     }
     
     public void carregaTabelaAutores() {
-        DefaultTableModel modelo = new DefaultTableModel(new Object[] {"nome", "nacionalidade", "dataNascimento"}, 0);
+        DefaultTableModel modelo = new DefaultTableModel(new Object[] {"Nome", "Nacionalidade", "DataNascimento"}, 0);
         
         for(int i = 0; i < listaAutores.size();i++) {
             Object linha[] = new Object[] {listaAutores.get(i).getNome(), listaAutores.get(i).getNacionalidade(), listaAutores.get(i).getDataNascimento()};
@@ -64,7 +66,7 @@ public class CadastroAutorEditora extends javax.swing.JFrame {
     }
     
     public void carregaTabelaEditoras() {
-        DefaultTableModel modelo = new DefaultTableModel(new Object[] {"nome", "paisOrigem", "anoFundacao"}, 0);
+        DefaultTableModel modelo = new DefaultTableModel(new Object[] {"Nome", "PaisOrigem", "AnoFundacao"}, 0);
         
         for(int i = 0; i < listaEditoras.size();i++) {
             Object linha[] = new Object[] {listaEditoras.get(i).getNome(), listaEditoras.get(i).getPaisOrigem(), listaEditoras.get(i).getAnoFundacao()};
@@ -92,7 +94,6 @@ public class CadastroAutorEditora extends javax.swing.JFrame {
         lblNacionalidadeAutor = new javax.swing.JLabel();
         txtNacionalidadeAutor = new javax.swing.JTextField();
         lblDataNascAutor = new javax.swing.JLabel();
-        txtDataNascAutor = new javax.swing.JTextField();
         btnSalvarAutor = new javax.swing.JButton();
         btnCancelarAutor = new javax.swing.JButton();
         btnEditarAutor = new javax.swing.JButton();
@@ -114,6 +115,7 @@ public class CadastroAutorEditora extends javax.swing.JFrame {
         tblEditora = new javax.swing.JTable();
         btnSair = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        txtDataNascAutor = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("BiblioTech | Cadastro Autor & Editora");
@@ -132,7 +134,7 @@ public class CadastroAutorEditora extends javax.swing.JFrame {
         labelTitulo.setForeground(new java.awt.Color(255, 255, 255));
         labelTitulo.setText("Nome");
 
-        txtNomeAutor.setToolTipText("Forneça seu usuário");
+        txtNomeAutor.setToolTipText("Forneça o nome do autor");
         txtNomeAutor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNomeAutorActionPerformed(evt);
@@ -151,7 +153,7 @@ public class CadastroAutorEditora extends javax.swing.JFrame {
         lblNacionalidadeAutor.setForeground(new java.awt.Color(255, 255, 255));
         lblNacionalidadeAutor.setText("Nacionalidade");
 
-        txtNacionalidadeAutor.setToolTipText("Forneça seu usuário");
+        txtNacionalidadeAutor.setToolTipText("Forneça a nacionalidade do autor");
         txtNacionalidadeAutor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNacionalidadeAutorActionPerformed(evt);
@@ -160,13 +162,6 @@ public class CadastroAutorEditora extends javax.swing.JFrame {
 
         lblDataNascAutor.setForeground(new java.awt.Color(255, 255, 255));
         lblDataNascAutor.setText("Data de Nascimento");
-
-        txtDataNascAutor.setToolTipText("Forneça seu usuário");
-        txtDataNascAutor.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtDataNascAutorActionPerformed(evt);
-            }
-        });
 
         btnSalvarAutor.setText("Salvar");
         btnSalvarAutor.setToolTipText("");
@@ -209,7 +204,7 @@ public class CadastroAutorEditora extends javax.swing.JFrame {
         lblNomeEditora.setForeground(new java.awt.Color(255, 255, 255));
         lblNomeEditora.setText("Nome");
 
-        txtNomeEditora.setToolTipText("Forneça seu usuário");
+        txtNomeEditora.setToolTipText("Forneça o nome da editora");
         txtNomeEditora.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNomeEditoraActionPerformed(evt);
@@ -219,7 +214,7 @@ public class CadastroAutorEditora extends javax.swing.JFrame {
         lblOrigemEditora.setForeground(new java.awt.Color(255, 255, 255));
         lblOrigemEditora.setText("País de Origem");
 
-        txtOrigemEditora.setToolTipText("Forneça seu usuário");
+        txtOrigemEditora.setToolTipText("Forneça o pais de origem da editora");
         txtOrigemEditora.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtOrigemEditoraActionPerformed(evt);
@@ -229,7 +224,7 @@ public class CadastroAutorEditora extends javax.swing.JFrame {
         lblFundacaoEditora.setForeground(new java.awt.Color(255, 255, 255));
         lblFundacaoEditora.setText("Ano de Fundação");
 
-        txtFundacaoEditora.setToolTipText("Forneça seu usuário");
+        txtFundacaoEditora.setToolTipText("Forneça o ano de fundaçao da editora");
         txtFundacaoEditora.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtFundacaoEditoraActionPerformed(evt);
@@ -347,7 +342,15 @@ public class CadastroAutorEditora extends javax.swing.JFrame {
         });
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("NÃO UTILIZE ACENTO!!!");
+
+        try {
+            txtDataNascAutor.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        txtDataNascAutor.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -389,7 +392,7 @@ public class CadastroAutorEditora extends javax.swing.JFrame {
                                         .addComponent(btnExcluirAutor))
                                     .addComponent(txtNacionalidadeAutor, javax.swing.GroupLayout.Alignment.LEADING)))
                             .addComponent(txtFundacaoEditora, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtDataNascAutor))
+                            .addComponent(txtDataNascAutor, javax.swing.GroupLayout.Alignment.LEADING))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(637, 637, 637)
@@ -427,9 +430,9 @@ public class CadastroAutorEditora extends javax.swing.JFrame {
                         .addComponent(txtNacionalidadeAutor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(lblDataNascAutor)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txtDataNascAutor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(36, 36, 36)
+                        .addGap(30, 30, 30)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnSalvarAutor)
                             .addComponent(btnCancelarAutor)
@@ -493,6 +496,7 @@ public class CadastroAutorEditora extends javax.swing.JFrame {
         txtFundacaoEditora.setEnabled(true);
         
         linhaAntigaE = txtNomeEditora.getText() + "|" + txtOrigemEditora.getText() + "|" + txtFundacaoEditora.getText();
+        nomeAntigoE = txtNomeEditora.getText();
     }//GEN-LAST:event_btnEditarEditoraActionPerformed
 
     private void btnCancelarEditoraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarEditoraActionPerformed
@@ -520,11 +524,16 @@ public class CadastroAutorEditora extends javax.swing.JFrame {
             String fundacaoEditora = txtFundacaoEditora.getText();
             String linha = nomeEditora + "|" + origemEditora + "|" + fundacaoEditora;
             
-            if (botaoE.equals("novo")) {
+            if (!nomeEditora.equals(nomeAntigoE) && BancoDeDados.in(nomeEditora, "Bibliotecario", "NomeEditora")){
+                JOptionPane.showMessageDialog(null, "Já existe editora com mesmo nome. Tente novamente!", "ERRO", JOptionPane.ERROR_MESSAGE);
+                txtNomeEditora.requestFocus();
+            }
+            else if (botaoE.equals("novo")) {
                 Editora editora = new Editora(nomeEditora, origemEditora, fundacaoEditora);
                 listaEditoras.add(editora);
                 
                 BancoDeDados.escrever(linha, "Bibliotecario", "Editora"); 
+                BancoDeDados.escrever(nomeEditora, "Bibliotecario", "NomeEditora"); 
                 
                 JOptionPane.showMessageDialog(null, "Editora cadastrada com sucesso!", "Mensagem", JOptionPane.INFORMATION_MESSAGE);
                 
@@ -533,6 +542,7 @@ public class CadastroAutorEditora extends javax.swing.JFrame {
                 int indexE = tblEditora.getSelectedRow();
                 
                 BancoDeDados.editaLinha(linhaAntigaE, linha, "Bibliotecario", "Editora");
+                BancoDeDados.editaLinha(nomeAntigoE, nomeEditora, "Bibliotecario", "Editora");
                 
                 listaEditoras.get(indexE).setNome(nomeEditora);
                 listaEditoras.get(indexE).setPaisOrigem(origemEditora);
@@ -575,6 +585,7 @@ public class CadastroAutorEditora extends javax.swing.JFrame {
         txtDataNascAutor.setEnabled(true);
         
         linhaAntiga = txtNomeAutor.getText() + "|" + txtNacionalidadeAutor.getText() + "|" + txtDataNascAutor.getText();
+        nomeAntigo = txtNomeAutor.getText();
     }//GEN-LAST:event_btnEditarAutorActionPerformed
 
     private void btnCancelarAutorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarAutorActionPerformed
@@ -602,17 +613,23 @@ public class CadastroAutorEditora extends javax.swing.JFrame {
             String dataNascimentoAutor = txtDataNascAutor.getText();
             String linha = txtNomeAutor.getText() + "|" + txtNacionalidadeAutor.getText() + "|" + txtDataNascAutor.getText();
             
-            if(botao.equals("novo")) {
+            if (!nomeAutor.equals(nomeAntigo) && BancoDeDados.in(nomeAutor, "Bibliotecario", "NomeAutor")){
+                JOptionPane.showMessageDialog(null, "Já existe autor com mesmo nome. Tente novamente!", "ERRO", JOptionPane.ERROR_MESSAGE);
+                txtNomeAutor.requestFocus();
+            }
+            else if(botao.equals("novo")) {
                 Autor autor = new Autor(nomeAutor, nacionalidadeAutor, dataNascimentoAutor);
                 listaAutores.add(autor);
                 
                 BancoDeDados.escrever(linha, "Bibliotecario", "Autor");
+                BancoDeDados.escrever(nomeAutor, "Bibliotecario", "NomeAutor"); 
                 
                 JOptionPane.showMessageDialog(null, "Autor cadastrado com sucesso!", "Mensagem", JOptionPane.INFORMATION_MESSAGE);
             } else if(botao.equals("editar")) {
                 int index = tblAutor.getSelectedRow();
                 
                 BancoDeDados.editaLinha(linhaAntiga, linha, "Bibliotecario", "Autor");
+                BancoDeDados.editaLinha(nomeAntigo, nomeAutor, "Bibliotecario", "Autor");
                 
                 listaAutores.get(index).setNome(nomeAutor);
                 listaAutores.get(index).setNacionalidade(nacionalidadeAutor);
@@ -651,10 +668,6 @@ public class CadastroAutorEditora extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtFundacaoEditoraActionPerformed
 
-    private void txtDataNascAutorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDataNascAutorActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtDataNascAutorActionPerformed
-
     private void txtNacionalidadeAutorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNacionalidadeAutorActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNacionalidadeAutorActionPerformed
@@ -673,6 +686,7 @@ public class CadastroAutorEditora extends javax.swing.JFrame {
         if(index >= 0 && index < listaAutores.size()) {
             String linha = txtNomeAutor.getText() + "|" + txtNacionalidadeAutor.getText() + "|" + txtDataNascAutor.getText();
             BancoDeDados.excluiLinha(linha, "Bibliotecario", "Autor");
+            BancoDeDados.excluiLinha(txtNomeAutor.getText(), "Bibliotecario", "NomeAutor");
             listaAutores.remove(index);          
         }
         
@@ -699,6 +713,7 @@ public class CadastroAutorEditora extends javax.swing.JFrame {
         if(indexEE >= 0 && indexEE < listaEditoras.size()) {
             String linha = txtNomeEditora.getText() + "|" + txtOrigemEditora.getText() + "|" + txtFundacaoEditora.getText();
             BancoDeDados.excluiLinha(linha, "Bibliotecario", "Editora");
+            BancoDeDados.excluiLinha(txtNomeEditora.getText(), "Bibliotecario", "NomeEditora");
             listaEditoras.remove(indexEE);          
         }
         
@@ -774,7 +789,6 @@ public class CadastroAutorEditora extends javax.swing.JFrame {
         int i = tblEditora.getSelectedRow();
         
         if(i >= 0 && i < listaEditoras.size()) {
-            System.out.println("AFA");
             Editora edit = listaEditoras.get(i);
             txtNomeEditora.setText(edit.getNome());
             txtOrigemEditora.setText(edit.getPaisOrigem());
@@ -850,7 +864,7 @@ public class CadastroAutorEditora extends javax.swing.JFrame {
     private javax.swing.JScrollPane tblInfosAutor;
     private javax.swing.JScrollPane tblInfosEditora;
     private javax.swing.JLabel titulo;
-    private javax.swing.JTextField txtDataNascAutor;
+    private javax.swing.JFormattedTextField txtDataNascAutor;
     private javax.swing.JTextField txtFundacaoEditora;
     private javax.swing.JTextField txtNacionalidadeAutor;
     private javax.swing.JTextField txtNomeAutor;

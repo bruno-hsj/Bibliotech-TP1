@@ -1,13 +1,12 @@
 package projeto;
 
-import java.util.Calendar;
-
 /**
  * Uma classe referente à livros de uma biblioteca.
  * @author netol
  */
 public class Livro extends Obra{
     private String generoLiterario;
+    private static String tipo = "Livro";
 
     /**
      * Cria um objeto Livro com nenhum atributo inicializado.
@@ -27,11 +26,11 @@ public class Livro extends Obra{
      * @param autor O autor do livro.
      * @param editora A editora que publicou o livro.
      */
-    public Livro(String generoLiterario, String titulo, String idioma, int qntdPaginas, int faixaEtaria, Calendar dataPublicacao, Autor autor, Editora editora) {
+    public Livro(String generoLiterario, String titulo, String idioma, int qntdPaginas, int faixaEtaria, String dataPublicacao, Autor autor, Editora editora) {
         super(titulo, idioma, qntdPaginas, faixaEtaria, dataPublicacao, autor, editora);
         this.generoLiterario = generoLiterario;
     }
-
+    
     
     /**
      * Obtém o genêro do livro.

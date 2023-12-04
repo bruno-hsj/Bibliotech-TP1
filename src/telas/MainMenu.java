@@ -223,8 +223,11 @@ public class MainMenu extends javax.swing.JFrame {
         
         BancoDeDados.criarDiretorio("Bibliotecario");
         BancoDeDados.criarArquivo("Obras");
+        BancoDeDados.criarArquivo("NomeObras");
         BancoDeDados.criarArquivo("Autor");
+        BancoDeDados.criarArquivo("NomeAutor");
         BancoDeDados.criarArquivo("Editora");
+        BancoDeDados.criarArquivo("NomeEditora");
         
         
         ArrayList<String> lista = (ArrayList<String>) BancoDeDados.lerArquivo("Cliente", "Emprestimo");
@@ -250,6 +253,30 @@ public class MainMenu extends javax.swing.JFrame {
             String[] aux  = sub.split("\\|");
             listaAutores.add(new Autor(aux[0], aux[1], aux[2]));
         }
+        
+        ArrayList<String> listaO = (ArrayList<String>) BancoDeDados.lerArquivo("Bibliotecario", "Obras");
+        for (String sub : listaO){
+            String[] aux  = sub.split("\\|");
+            String nomeAutor = aux[6];
+            String nomeEditora = aux[7];
+            Autor autor = null;
+            Editora editora = null;
+            
+            for (Autor aut: listaAutores){
+                if (aut.getNome().equals(nomeAutor)){
+                    autor = aut;
+                    break;
+                }   
+            }  
+            for (Editora edit: listaEditoras){
+                if (edit.getNome().equals(nomeEditora)){
+                    editora = edit;
+                    break;
+                 }   
+            }
+            listaObras.add(new Obra(aux[0], aux[1], aux[2], Integer.parseInt(aux[3]), Integer.parseInt(aux[4]), aux[5], autor, editora, aux[8]));
+        }
+        
         
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
