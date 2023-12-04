@@ -13,6 +13,8 @@ import projeto.Livro;
 import projeto.Obra;
 import projeto.Quadrinho;
 import projeto.Revista;
+import static telas.EstoqueAdm.informacoes;
+import static telas.EstoqueAdm.listaObras;
 
 /**
  *
@@ -30,7 +32,7 @@ public class EstoqueUser extends javax.swing.JFrame {
      public String buscaAutor;
      public String buscaEditora;
      
-     ArrayList<Obra> obras = new ArrayList<Obra>();
+     ArrayList<Obra> listaObras = new ArrayList<Obra>();
      ArrayList<Livro> livros = new ArrayList<Livro>();
      ArrayList<Quadrinho> quadrinhos = new ArrayList<Quadrinho>();
      ArrayList<Revista> revistas = new ArrayList<Revista>();
@@ -39,17 +41,28 @@ public class EstoqueUser extends javax.swing.JFrame {
     public EstoqueUser() {
         initComponents();
         
+        //Campos de Pesquisa
+        btnBuscarLivro.setEnabled(false);
+        btnEmprestimo.setEnabled(false);
+        btnPesquisarLivro.setEnabled(true);
         
+        //Botões de Ação
         
+        txtBuscarAutor.setEnabled(false);
+        txtBuscarEditora.setEnabled(false);
+        txtBuscarGeneroLivro.setEnabled(false);
+        txtBuscarNomeLivro.setEnabled(false);
+
         
     }
 
     public void carregaTabelaUser() {
         DefaultTableModel modelo = new DefaultTableModel(new Object[] {"Título", "Gênero", "Tipo", "Páginas", "FaixaEtaria", "Publicacao", "Autor", "Editora", "qtdEstoque"}, 0);
         
-        for(int i = 0; i < size(BancoDeDados.lerArquivo("Bibliotecario", "Obras")); i++){
-            Object linha [] = new Object[] {BancoDeDados.lerArquivo("Bibliotecario", "Obras") };
-                    
+        for(int i = 0; i < listaObras.size(); i++){
+            Object linha [] = new Object[] {listaObras.get(i).getTitulo(), listaObras.get(i).getGenero(), tipoObras.get(i), listaObras.get(i).getQntdPaginas(),
+            listaObras.get(i).getFaixaEtaria(), listaObras.get(i).getDataPublicacao, listaObras.get(i).getAutor().getNome(), listaObras.get(i).getEditora().getNome(),
+            listaObras.get(i).getqtdLivrosEstoque()};
             modelo.addRow(linha);
         }
         
@@ -141,6 +154,11 @@ public class EstoqueUser extends javax.swing.JFrame {
         });
 
         btnPesquisarLivro.setText("Pesquisar");
+        btnPesquisarLivro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPesquisarLivroActionPerformed(evt);
+            }
+        });
 
         btnBuscarLivro.setBackground(new java.awt.Color(51, 153, 0));
         btnBuscarLivro.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -318,10 +336,54 @@ public class EstoqueUser extends javax.swing.JFrame {
     private void btnBuscarLivroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarLivroActionPerformed
     //Botão de Busca.
     
-           if(BancoDeDados.in(buscaNome, "Bibliotecario", "Obras") ){
                 //Código para exibir resultado da busca por nome.
+            if(txtBuscarNomeLivro.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Informe um título válido!", "Mensagem", JOptionPane.PLAIN_MESSAGE);
+        } else {
+            Obra o;
+            String titulo = "", information = "", lingua = "", datapubli = "";
+            int pags = 0, faixaetaria = 0;
+            String tituloBuscado = txtBuscarNomeLivro.getText();
+            
+            for(int j = 0; j < listaObras.size(); j++) {
+                o = listaObras.get(j);
                 
-            } 
+                if(tituloBuscado.equals(o.getTitulo())) {
+                    titulo = String.valueOf(o.getTitulo());
+                    information = informacoes.get(j);
+                    lingua = String.valueOf(o.getIdioma());
+                    pags = o.getQntdPaginas();
+                    faixaetaria = o.getFaixaEtaria();
+                    datapubli = String.valueOf(o.getDataPublicacao());
+                    
+                }
+            }
+            
+            if(tituloBuscado.equals("")) {
+                JOptionPane.showMessageDialog(null, "Nenhuma obra com esse título foi encontrada!", "Mensagem", JOptionPane.PLAIN_MESSAGE);
+                
+                txtTitulo.setText("");
+                txtInfos.setText("");
+                txtIdioma.setText("");
+                txtQtdPaginas.setText("");
+                txtFaixaEtaria.setText("");
+                txtDataPublicacao.setText("");
+                spnIncrementaEstoque.setValue(0);
+            } else {    
+                txtTitulo.setText(titulo);
+                txtInfos.setText(information);
+                txtIdioma.setText(lingua);
+                txtQtdPaginas.setText(Integer.toString(pags));
+                txtFaixaEtaria.setText(Integer.toString(faixaetaria));
+                txtDataPublicacao.setText(datapubli);
+                
+            }
+            
+            txtTitulo.selectAll();
+            txtTitulo.requestFocus();
+        }
+                
+           
            
            if(BancoDeDados.in(buscaGenero, "Bibliotecario", "Obras") ){
                 //Código para exibir resultado da busca por genero.
@@ -341,6 +403,22 @@ public class EstoqueUser extends javax.swing.JFrame {
 
 
     }//GEN-LAST:event_btnBuscarLivroActionPerformed
+
+    private void btnPesquisarLivroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarLivroActionPerformed
+        //Campos de Pesquisa
+        btnBuscarLivro.setEnabled(true);
+        btnEmprestimo.setEnabled(true);
+        btnPesquisarLivro.setEnabled(true);
+        
+        //Botões de Ação
+        
+        txtBuscarAutor.setEnabled(true);
+        txtBuscarEditora.setEnabled(true);
+        txtBuscarGeneroLivro.setEnabled(true);
+        txtBuscarNomeLivro.setEnabled(true);
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnPesquisarLivroActionPerformed
 
     /**
      * @param args the command line arguments
